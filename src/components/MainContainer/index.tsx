@@ -1,14 +1,15 @@
-import React from "react";
 import { Navigation } from "../Navigation";
 
-import { WrapperContainer, Container, Thumbs, ThumbImage } from "./styles";
-import { MainContainerProps } from "./types";
+import { Thumbs } from "../Thumbs";
 import { useGallery } from "../../hooks/useGallery";
 
-const MainContainer = ({ images }: MainContainerProps) => {
+import { WrapperContainer, Container } from "./styles";
+import { MainContainerProps } from "./types";
+
+export const MainContainer = ({ images }: MainContainerProps) => {
   const {
-    checkFirstImage,
-    checkLastImage,
+    isFirstImage,
+    isLastImage,
     handleChange,
     handleChangeNext,
     handleChangePrev,
@@ -21,20 +22,12 @@ const MainContainer = ({ images }: MainContainerProps) => {
         <img src={images[state.indexImage]} alt="" />
 
         <Navigation.Root>
-          {!checkFirstImage && <Navigation.Left handle={handleChangePrev} />}
-          {!checkLastImage && <Navigation.Right handle={handleChangeNext} />}
+          {!isFirstImage && <Navigation.Left handle={handleChangePrev} />}
+          {!isLastImage && <Navigation.Right handle={handleChangeNext} />}
         </Navigation.Root>
       </Container>
 
-      <Thumbs>
-        {React.Children.toArray(
-          images.map((image, index) => (
-            <ThumbImage image={image} onClick={() => handleChange(index)} />
-          ))
-        )}
-      </Thumbs>
+      <Thumbs images={images} handleChange={handleChange} />
     </WrapperContainer>
   );
 };
-
-export { MainContainer };

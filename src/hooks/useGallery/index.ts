@@ -5,7 +5,7 @@ const initialState: InitialStateProps = {
   indexImage: 0,
 };
 
-function reducerImage(state: InitialStateProps, action: ActionProps) {
+function reducer(state: InitialStateProps, action: ActionProps) {
   if (action.type === ActionKind.CHANGE) {
     return {
       indexImage: action.selectedImage,
@@ -16,7 +16,7 @@ function reducerImage(state: InitialStateProps, action: ActionProps) {
 }
 
 export const useGallery = (images: string[]) => {
-  const [state, dispatch] = useReducer(reducerImage, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   function handleChange(selectedImage: number) {
     dispatch({
@@ -39,17 +39,17 @@ export const useGallery = (images: string[]) => {
     });
   }
 
-  const checkFirstImage = useMemo(() => {
+  const isFirstImage = useMemo(() => {
     return state.indexImage === 0;
   }, [state.indexImage]);
 
-  const checkLastImage = useMemo(() => {
+  const isLastImage = useMemo(() => {
     return state.indexImage === images.length - 1;
   }, [state.indexImage, images.length]);
 
   return {
-    checkFirstImage,
-    checkLastImage,
+    isFirstImage,
+    isLastImage,
     handleChange,
     handleChangeNext,
     handleChangePrev,
