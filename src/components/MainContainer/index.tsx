@@ -1,31 +1,40 @@
 import { Navigation } from "../Navigation";
-
 import { Thumbs } from "../Thumbs";
-import { useGallery } from "../../hooks/useGallery";
-
-import { WrapperContainer, Container } from "./styles";
-import { MainContainerProps } from "./types";
 import { ControlBar } from "../ControlBar";
 
-export const MainContainer = ({ images }: MainContainerProps) => {
+import { useGallery } from "../../hooks/useGallery";
+import { WrapperContainer, Container } from "./styles";
+import { MainContainerProps } from "./types";
+
+export const MainContainer = ({
+  images,
+  selectedImage,
+  open = false,
+  handleClose = () => {},
+}: MainContainerProps) => {
   const {
     isFirstImage,
     isLastImage,
     handleChange,
     handleChangeNext,
     handleChangePrev,
-    state,
-  } = useGallery(images);
-
-  const amountImages = images.length;
-  const indexCurrent = state.indexImage + 1;
+    currentImage,
+    amountImages,
+  } = useGallery({
+    images,
+    selectedImage,
+  });
 
   return (
-    <WrapperContainer>
-      <ControlBar amount={amountImages} current={indexCurrent} />
+    <WrapperContainer open={open}>
+      <ControlBar
+        amount={amountImages}
+        current={currentImage}
+        handleClose={handleClose}
+      />
 
       <Container>
-        <img src={images[state.indexImage]} alt="" />
+        <img src={images[currentImage]} />
 
         <Navigation.Root>
           {!isFirstImage && <Navigation.Left handle={handleChangePrev} />}

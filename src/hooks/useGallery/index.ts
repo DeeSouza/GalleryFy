@@ -1,22 +1,26 @@
-import { useMemo, useReducer } from "react";
-import { ActionKind, ActionProps, InitialStateProps } from "./types";
+import { useEffect, useMemo, useReducer } from "react";
+import { ActionKind, ActionProps, InitialStateProps, Props } from "./types";
 
 const initialState: InitialStateProps = {
-  indexImage: 0,
+  selectedImage: 0,
 };
 
 function reducer(state: InitialStateProps, action: ActionProps) {
   if (action.type === ActionKind.CHANGE) {
     return {
-      indexImage: action.selectedImage,
+      selectedImage: action.selectedImage,
     };
   }
 
   return state;
 }
 
-export const useGallery = (images: string[]) => {
+export const useGallery = ({ images, selectedImage = 0 }: Props) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    handleChange(selectedImage);
+  }, [selectedImage]);
 
   function handleChange(selectedImage: number) {
     dispatch({
@@ -28,24 +32,24 @@ export const useGallery = (images: string[]) => {
   function handleChangeNext() {
     dispatch({
       type: ActionKind.CHANGE,
-      selectedImage: state.indexImage + 1,
+      selectedImage: state.selectedImage + 1,
     });
   }
 
   function handleChangePrev() {
     dispatch({
       type: ActionKind.CHANGE,
-      selectedImage: state.indexImage - 1,
+      selectedImage: state.selectedImage - 1,
     });
   }
 
   const isFirstImage = useMemo(() => {
-    return state.indexImage === 0;
-  }, [state.indexImage]);
+    return state.selectedImage === 0;
+  }, [state.selectedImage]);
 
   const isLastImage = useMemo(() => {
-    return state.indexImage === images.length - 1;
-  }, [state.indexImage, images.length]);
+    return state.selectedImage === images.length - 1;
+  }, [state.selectedImage, images.length]);
 
   return {
     isFirstImage,
@@ -53,6 +57,7 @@ export const useGallery = (images: string[]) => {
     handleChange,
     handleChangeNext,
     handleChangePrev,
-    state,
+    currentImage: state.selectedImage,
+    amountImages: images.length,
   };
 };

@@ -7,11 +7,15 @@ import {
 import { Container, Buttons } from "./styles";
 import { ControlBarProps } from "./types";
 
-export const ControlBar = ({ amount, current }: ControlBarProps) => {
+export const ControlBar = ({
+  amount,
+  current,
+  handleClose,
+}: ControlBarProps) => {
   return (
     <Container>
       <div>
-        {current}/{amount}
+        {current + 1}/{amount}
       </div>
 
       <Buttons>
@@ -23,7 +27,7 @@ export const ControlBar = ({ amount, current }: ControlBarProps) => {
           <MagnifyingGlassPlus size={20} color="#FFFFFF" />
         </button>
 
-        <button type="button">
+        <button type="button" onClick={handleClose}>
           <XCircle size={20} color="#FFFFFF" />
         </button>
       </Buttons>

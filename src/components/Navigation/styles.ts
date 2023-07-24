@@ -25,10 +25,10 @@ const NavStyles = css`
 
 export const NavLeft = styled.div`
   ${NavStyles}
-  left: 5px;
+  left: 10px;
 `;
 
 export const NavRight = styled.div`
   ${NavStyles}
-  right: 5px;
+  right: 10px;
 `;

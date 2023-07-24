@@ -2,8 +2,13 @@ export enum ActionKind {
   CHANGE = "CHANGE",
 }
 
+export interface Props {
+  images: string[];
+  selectedImage?: number;
+}
+
 export interface InitialStateProps {
-  indexImage: number;
+  selectedImage: number;
 }
 
 export interface ActionProps {

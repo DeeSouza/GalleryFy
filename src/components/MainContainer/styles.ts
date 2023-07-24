@@ -1,17 +1,23 @@
 import styled from "styled-components";
 
-export const WrapperContainer = styled.div`
+interface WrapperContainerProps {
+  open: boolean;
+}
+
+export const WrapperContainer = styled.div<WrapperContainerProps>`
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
 
-  display: flex;
+  display: ${(props) => (props.open ? "flex" : "none")};
   flex: 1;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 
-  position: relative;
+  position: fixed;
+  left: 0;
+  top: 0;
 `;
 
 export const Container = styled.div`
