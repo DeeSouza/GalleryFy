@@ -11,10 +11,16 @@ export const ContainerNavigation = styled.div`
 
 const NavStyles = css`
   position: absolute;
-  background-color: #c7c7c7;
+  background-color: #666;
   padding: 5px;
   cursor: pointer;
+  border-radius: 5px;
+  opacity: 0.6;
   transition: all 0.25s ease-in;
+
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 export const NavLeft = styled.div`
