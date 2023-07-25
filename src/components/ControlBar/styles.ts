@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
   background-color: #393939;
+  color: #fff;
   width: 100%;
   height: 50px;
   padding: 0 10px;
@@ -13,8 +12,6 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  color: #fff;
 `;
 
 export const Buttons = styled.div`

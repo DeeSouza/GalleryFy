@@ -2,6 +2,8 @@ import {
   MagnifyingGlassPlus,
   MagnifyingGlassMinus,
   XCircle,
+  ArrowCounterClockwise,
+  ArrowClockwise,
 } from "phosphor-react";
 
 import { Container, Buttons } from "./styles";
@@ -11,6 +13,7 @@ export const ControlBar = ({
   amount,
   current,
   handleClose,
+  handleRotate,
 }: ControlBarProps) => {
   return (
     <Container>
@@ -19,6 +22,14 @@ export const ControlBar = ({
       </div>
 
       <Buttons>
+        <button type="button" onClick={() => handleRotate("anticlockwise")}>
+          <ArrowCounterClockwise size={20} color="#FFFFFF" />
+        </button>
+
+        <button type="button" onClick={() => handleRotate("clockwise")}>
+          <ArrowClockwise size={20} color="#FFFFFF" />
+        </button>
+
         <button type="button">
           <MagnifyingGlassMinus size={20} color="#FFFFFF" />
         </button>

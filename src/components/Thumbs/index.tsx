@@ -3,12 +3,16 @@ import React from "react";
 import { Container, ThumbImage } from "./styles";
 import { ThumbsProps } from "./types";
 
-export const Thumbs = ({ images, handleChange }: ThumbsProps) => {
+export const Thumbs = ({ images, currentImage, handleChange }: ThumbsProps) => {
   return (
     <Container>
       {React.Children.toArray(
         images.map((image, index: number) => (
-          <ThumbImage image={image} onClick={() => handleChange(index)} />
+          <ThumbImage
+            image={image}
+            onClick={() => handleChange(index)}
+            $actived={index === currentImage}
+          />
         ))
       )}
     </Container>

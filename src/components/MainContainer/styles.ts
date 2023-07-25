@@ -21,16 +21,20 @@ export const WrapperContainer = styled.div<WrapperContainerProps>`
 `;
 
 export const Container = styled.div`
-  height: auto;
-  width: 90%;
-  max-width: 1280px;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  height: calc(100% - (50px + 80px));
+  position: relative;
+  overflow: hidden;
   display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
 
-  > img {
-    width: auto;
-    max-width: 100%;
+  > div:first-child {
+    max-width: 1280px;
+
+    > img {
+      vertical-align: middle;
+    }
   }
 `;

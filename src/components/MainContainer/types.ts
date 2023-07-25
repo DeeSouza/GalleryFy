@@ -3,4 +3,5 @@ export interface MainContainerProps {
   open?: boolean;
   selectedImage?: number;
   handleClose(): void;
+  showThumbs?: boolean;
 }

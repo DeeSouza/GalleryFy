@@ -1,27 +1,39 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
+
+interface ThumbImageProps {
+  image: string;
+  $actived: boolean;
+}
 
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
   background-color: #393939;
   width: 100%;
-  height: 100px;
+  height: 80px;
 `;
 
-export const ThumbImage = styled.div<{ image: string }>`
+export const ThumbImage = styled.div<ThumbImageProps>`
   background-image: url(${(props) => props.image});
-  width: 80px;
-  height: 80px;
-  object-fit: cpver;
+  width: 60px;
+  height: 60px;
   background-size: cover;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.25s ease-in-out;
+  border: 3px solid #393939;
+  opacity: 0.6;
+  transition: opacity 0.25s ease-in-out;
+
+  ${(props) =>
+    props.$actived &&
+    css`
+      border: 3px solid #c7c7c7;
+    `}
 
   &:hover {
-    opacity: 0.5;
+    opacity: 1;
   }
 `;
