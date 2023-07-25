@@ -21,7 +21,7 @@ import { MainContainerProps } from "./types";
 
 export const MainContainer = ({
   images,
-  selectedImage,
+  selectedImage = 0,
   open = false,
   showThumbs = true,
   handleClose = () => {},
