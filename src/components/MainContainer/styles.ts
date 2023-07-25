@@ -35,6 +35,8 @@ export const Container = styled.div`
 
     > img {
       vertical-align: middle;
+      transform: scale(1);
+      transition: all 0.2s ease;
     }
   }
 `;

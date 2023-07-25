@@ -1,4 +1,5 @@
 import { RefObject } from "react";
+import { ZoomKind } from "./types";
 
 export const useControl = (
   element: RefObject<HTMLDivElement>,
@@ -13,8 +14,6 @@ export const useControl = (
     const currentElement = element.current;
     const heightWrapperElement = wrapperElement.current.offsetHeight;
     const imageElement = currentElement.firstChild as HTMLImageElement;
-
-    if (!imageElement) return null;
 
     const currentRotate = Number(
       currentElement.style.transform.replace(/[^-\d.]/g, "")
@@ -38,7 +37,31 @@ export const useControl = (
     }
   }
 
+  function handleZoom(type: ZoomKind) {
+    if (!element.current) return null;
+
+    const currentElement = element.current;
+    const imageElement = currentElement.firstChild as HTMLImageElement;
+    let currentScale = Number(
+      imageElement.style.transform.replace(/[^-\d.]/g, "")
+    );
+
+    if (type === ZoomKind.NORMAL) {
+      imageElement.style.transform = "scale(1)";
+      return;
+    }
+
+    if (type === ZoomKind.IN) {
+      currentScale = currentScale + 0.25;
+      imageElement.style.transform = `scale(${currentScale})`;
+    } else {
+      currentScale = currentScale - 0.25;
+      imageElement.style.transform = `scale(${currentScale})`;
+    }
+  }
+
   return {
     handleRotate,
+    handleZoom,
   };
 };

@@ -42,7 +42,7 @@ export const MainContainer = ({
     selectedImage,
   });
 
-  const { handleRotate } = useControl(mainImageRef, wrapperRef);
+  const { handleRotate, handleZoom } = useControl(mainImageRef, wrapperRef);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "auto";
@@ -54,6 +54,7 @@ export const MainContainer = ({
         amount={amountImages}
         current={currentImage}
         handleClose={handleClose}
+        handleZoom={handleZoom}
         handleRotate={(direction) => handleRotate(direction)}
       />
 

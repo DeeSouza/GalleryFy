@@ -4,16 +4,19 @@ import {
   XCircle,
   ArrowCounterClockwise,
   ArrowClockwise,
+  ArrowsIn,
 } from "phosphor-react";
 
 import { Container, Buttons } from "./styles";
 import { ControlBarProps } from "./types";
+import { ZoomKind } from "../../hooks/useControl/types";
 
 export const ControlBar = ({
   amount,
   current,
   handleClose,
   handleRotate,
+  handleZoom,
 }: ControlBarProps) => {
   return (
     <Container>
@@ -38,11 +41,27 @@ export const ControlBar = ({
           <ArrowClockwise size={20} color="#FFFFFF" />
         </button>
 
-        <button type="button" title="Menos Zoom">
+        <button
+          type="button"
+          title="Tamanho normal"
+          onClick={() => handleZoom(ZoomKind.NORMAL)}
+        >
+          <ArrowsIn size={20} color="#FFFFFF" />
+        </button>
+
+        <button
+          type="button"
+          title="Menos Zoom"
+          onClick={() => handleZoom(ZoomKind.OUT)}
+        >
           <MagnifyingGlassMinus size={20} color="#FFFFFF" />
         </button>
 
-        <button type="button" title="Mais Zoom">
+        <button
+          type="button"
+          title="Mais Zoom"
+          onClick={() => handleZoom(ZoomKind.IN)}
+        >
           <MagnifyingGlassPlus size={20} color="#FFFFFF" />
         </button>
 
