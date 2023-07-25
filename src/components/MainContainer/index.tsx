@@ -1,7 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Navigation } from "../Navigation";
 import { ControlBar } from "../ControlBar";
+import { Draggable } from "../Draggable";
 import { Thumbs } from "../Thumbs";
 
 import { useGallery } from "../../hooks/useGallery";
@@ -21,13 +22,15 @@ import { MainContainerProps } from "./types";
 
 export const MainContainer = ({
   images,
-  selectedImage = 0,
+  selectedImage,
   open = false,
   showThumbs = true,
   handleClose = () => {},
 }: MainContainerProps) => {
-  const mainImageRef = useRef<HTMLDivElement | null>(null);
-  const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const [positionStart, setPositionStart] = useState({ x: 0, y: 0 });
+  const wrapperImage = useRef<HTMLDivElement | null>(null);
+  const wrapperContainer = useRef<HTMLDivElement | null>(null);
+  const imageRef = useRef<HTMLImageElement | null>(null);
 
   const {
     isFirstImage,
@@ -42,26 +45,37 @@ export const MainContainer = ({
     selectedImage,
   });
 
-  const { handleRotate, handleZoom } = useControl(mainImageRef, wrapperRef);
+  const { handleRotate, handleZoom, handleReset } = useControl(
+    wrapperImage,
+    wrapperContainer
+  );
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "auto";
   }, [open]);
+
+  function handleCloseGallery() {
+    handleClose();
+    handleReset();
+    setPositionStart({ x: 0, y: 0 });
+  }
 
   return (
     <WrapperContainer open={open}>
       <ControlBar
         amount={amountImages}
         current={currentImage}
-        handleClose={handleClose}
+        handleClose={handleCloseGallery}
         handleZoom={handleZoom}
         handleRotate={(direction) => handleRotate(direction)}
       />
 
-      <Container ref={wrapperRef}>
-        <div ref={mainImageRef}>
-          <img src={images[currentImage]} />
-        </div>
+      <Container ref={wrapperContainer}>
+        <Draggable positionStart={positionStart}>
+          <div ref={wrapperImage}>
+            <img src={images[currentImage]} ref={imageRef} draggable="false" />
+          </div>
+        </Draggable>
 
         <Navigation.Root>
           {!isFirstImage && <Navigation.Left handle={handleChangePrev} />}

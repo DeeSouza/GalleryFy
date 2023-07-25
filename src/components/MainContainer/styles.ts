@@ -24,7 +24,6 @@ export const Container = styled.div`
   width: 100%;
   height: calc(100% - (50px + 80px));
   position: relative;
-  overflow: hidden;
   display: flex;
   flex: 1;
   align-items: center;
@@ -36,7 +35,7 @@ export const Container = styled.div`
     > img {
       vertical-align: middle;
       transform: scale(1);
-      transition: all 0.2s ease;
+      user-select: none;
     }
   }
 `;

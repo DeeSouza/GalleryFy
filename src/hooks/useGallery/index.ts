@@ -15,10 +15,12 @@ function reducer(state: InitialStateProps, action: ActionProps) {
   return state;
 }
 
-export const useGallery = ({ images, selectedImage = 0 }: Props) => {
+export const useGallery = ({ images, selectedImage }: Props) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
+    if (!selectedImage) return;
+
     handleChange(selectedImage);
   }, [selectedImage]);
 

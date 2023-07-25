@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   position: relative;
-  background-color: #393939;
+  background-color: rgba(57, 57, 57, 0.6);
   color: #fff;
   width: 100%;
   height: 50px;
   padding: 0 10px;
   box-sizing: border-box;
+  z-index: 1;
 
   display: flex;
   align-items: center;
