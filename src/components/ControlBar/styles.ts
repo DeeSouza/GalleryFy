@@ -27,5 +27,11 @@ export const Buttons = styled.div`
     width: 30px;
     height: 30px;
     cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.25s ease-in;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 `;
