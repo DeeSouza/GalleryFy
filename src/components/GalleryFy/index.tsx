@@ -21,7 +21,7 @@ import { GalleryFyProps } from "./types";
  * @returns
  */
 
-export const GalleryFy = ({
+const GalleryFy = ({
   images = [],
   selectedImage,
   open = false,
@@ -94,3 +94,5 @@ export const GalleryFy = ({
     </WrapperContainer>
   );
 };
+
+export default GalleryFy;

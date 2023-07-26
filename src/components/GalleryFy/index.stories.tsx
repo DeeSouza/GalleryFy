@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { GalleryFyProps } from "./types";
-import { GalleryFy } from ".";
+import GalleryFy from ".";
 
 import image1 from "@assets/image-example-1.png";
 import image2 from "@assets/image-example-2.png";

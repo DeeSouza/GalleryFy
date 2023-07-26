@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GalleryFy } from "@components/GalleryFy";
+import GalleryFy from "@components/GalleryFy";
 
 import image1 from "@assets/image-example-1.png";
 import image2 from "@assets/image-example-2.png";
