@@ -14,7 +14,7 @@ npm install @deesouza/galleryfy
 ## Usage
 
 ```js
-import GalleryFy from '@deesouza/galleryfy'
+import { GalleryFy } from '@deesouza/galleryfy';
 
 const images [
     'https://cdn.images.com/image-1.png',
