@@ -1,8 +1,6 @@
 import { fileURLToPath, URL } from "url";
 import { defineConfig } from "vite";
-import { typescriptPaths } from "rollup-plugin-typescript-paths";
 import react from "@vitejs/plugin-react";
-import typescript from "@rollup/plugin-typescript";
 
 export default defineConfig({
   resolve: {
@@ -33,26 +31,18 @@ export default defineConfig({
   },
   plugins: [react()],
   build: {
-    manifest: true,
-    minify: true,
-    reportCompressedSize: true,
     lib: {
-      entry: fileURLToPath(new URL("./src/index.ts", import.meta.url)),
-      fileName: "main",
-      formats: ["es", "cjs"],
+      entry: fileURLToPath(new URL("./src/index", import.meta.url)),
+      name: "GalleryFy",
+      fileName: (format) => `main.${format}.js`,
     },
     rollupOptions: {
-      external: [],
-      plugins: [
-        typescriptPaths({
-          preserveExtensions: true,
-        }),
-        typescript({
-          sourceMap: false,
-          declaration: true,
-          outDir: "dist",
-        }),
-      ],
+      external: ["react", "react-dom"],
+      output: {
+        globals: {
+          react: "React",
+        },
+      },
     },
   },
 });

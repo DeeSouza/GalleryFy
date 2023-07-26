@@ -46,7 +46,6 @@
     "url": "^0.11.1"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^11.1.2",
     "@storybook/addon-essentials": "^7.1.1",
     "@storybook/addon-interactions": "^7.1.1",
     "@storybook/addon-links": "^7.1.1",
@@ -66,7 +65,6 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "eslint-plugin-storybook": "^0.6.13",
-    "rollup-plugin-typescript-paths": "^1.4.0",
     "storybook": "^7.1.1",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
