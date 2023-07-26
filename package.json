@@ -21,10 +21,10 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "storybook-docs": "storybook dev --docs",
-    "build-storybook": "storybook build",
+    "build-storybook": "storybook build && touch ./storybook-static/.nojekyll",
     "build-storybook-docs": "storybook build --docs",
     "deploy": "npm version patch && npm publish --access=public",
-    "deploy-storybook": "gh-pages -d storybook-static"
+    "deploy-storybook": "gh-pages -d storybook-static -t true"
   },
   "files": [
     "/dist",
