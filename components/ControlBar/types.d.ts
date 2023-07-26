@@ -1,8 +1,8 @@
-import { ZoomKind } from "../../hooks/useControl/types";
+import { Direction, ZoomKind } from '../../hooks/useControl/types';
 export interface ControlBarProps {
     amount: number;
     current: number;
     handleClose(): void;
-    handleRotate(direction: string): void;
+    handleRotate(direction: Direction): void;
     handleZoom(type: ZoomKind): void;
 }
