@@ -5,7 +5,7 @@
     "name": "Diego Souza",
     "url": "https://github.com/deesouza"
   },
-  "version": "1.0.4",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -16,7 +16,7 @@
     "storybook-docs": "storybook dev --docs",
     "build-storybook": "storybook build",
     "build-storybook-docs": "storybook build --docs",
-    "deploy": "npm version patch && npm publish"
+    "deploy": "npm version patch && npm publish --access=public"
   },
   "files": [
     "dist",
