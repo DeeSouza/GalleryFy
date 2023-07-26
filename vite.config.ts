@@ -1,6 +1,7 @@
+import { fileURLToPath, URL } from "url";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { fileURLToPath, URL } from "url";
+import dts from "vite-plugin-dts";
 
 export default defineConfig({
   resolve: {
@@ -29,5 +30,28 @@ export default defineConfig({
       },
     ],
   },
-  plugins: [react()],
+  plugins: [
+    react(),
+    dts({
+      insertTypesEntry: true,
+    }),
+  ],
+  build: {
+    lib: {
+      entry: fileURLToPath(new URL("./index.ts", import.meta.url)),
+      name: "MyLib",
+      formats: ["es", "umd"],
+      fileName: (format) => `galleryfy.${format}.js`,
+    },
+    rollupOptions: {
+      external: ["react", "react-dom", "styled-components"],
+      output: {
+        globals: {
+          react: "React",
+          "react-dom": "ReactDOM",
+          "styled-components": "styled",
+        },
+      },
+    },
+  },
 });

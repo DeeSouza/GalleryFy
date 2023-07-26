@@ -21,7 +21,6 @@
     "build-storybook-docs": "storybook build --docs",
     "deploy": "npm version patch && npm publish --access=public"
   },
-  "module": "src",
   "files": [
     "dist",
     "src",
@@ -29,6 +28,15 @@
     "README.md",
     "index.ts"
   ],
+  "main": "./dist/galleryfy.umd.js",
+  "module": "./dist/galleryfy.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+      ".": {
+          "import": "./dist/galleryfy.es.js",
+          "require": "./dist/galleryfy.umd.js"
+      }
+  },
   "peerDependencies": {
     "react": ">=16"
   },
@@ -61,7 +69,8 @@
     "eslint-plugin-storybook": "^0.6.13",
     "storybook": "^7.1.1",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-plugin-dts": "^3.3.1"
   },
   "repository": {
     "type": "git",
