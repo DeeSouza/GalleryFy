@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MainContainer } from "./components/MainContainer";
+import { GalleryFy } from "./components/GalleryFy";
 
 function App() {
   const [openInImage, setOpenInImage] = useState(0);
@@ -18,7 +18,7 @@ function App() {
 
   return (
     <div>
-      <MainContainer
+      <GalleryFy
         open={open}
         images={images}
         selectedImage={openInImage}

@@ -9,7 +9,7 @@ import { useGallery } from "@hooks/useGallery";
 import { useControl } from "@hooks/useControl";
 
 import { WrapperContainer, Container } from "./styles";
-import { MainContainerProps } from "./types";
+import { GalleryFyProps } from "./types";
 
 /**
  *
@@ -21,13 +21,13 @@ import { MainContainerProps } from "./types";
  * @returns
  */
 
-export const MainContainer = ({
-  images,
+export const GalleryFy = ({
+  images = [],
   selectedImage,
   open = false,
   showThumbs = true,
   handleClose = () => {},
-}: MainContainerProps) => {
+}: GalleryFyProps) => {
   const [positionStart, setPositionStart] = useState({ x: 0, y: 0 });
   const wrapperImage = useRef<HTMLDivElement | null>(null);
   const wrapperContainer = useRef<HTMLDivElement | null>(null);

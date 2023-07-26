@@ -1,4 +1,4 @@
-export interface MainContainerProps {
+export interface GalleryFyProps {
   images: string[];
   open?: boolean;
   selectedImage?: number;
