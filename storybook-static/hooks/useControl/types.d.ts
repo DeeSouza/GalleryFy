@@ -3,6 +3,10 @@ export declare enum ZoomKind {
     OUT = "OUT",
     NORMAL = "NORMAL"
 }
+export declare enum Direction {
+    CLOCKWISE = "CLOCKWISE",
+    ANTICLOCKWISE = "ANTICLOCKWISE"
+}
 export interface PositionMouse {
     x: number;
     y: number;
