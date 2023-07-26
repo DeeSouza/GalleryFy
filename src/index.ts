@@ -1,3 +1,1 @@
-import GalleryFy from "./components/GalleryFy";
-
-export { GalleryFy };
+export { default as GalleryFy } from "./components/GalleryFy";
