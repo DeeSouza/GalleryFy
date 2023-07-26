@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 
-import { Navigation } from "../Navigation";
-import { ControlBar } from "../ControlBar";
-import { Draggable } from "../Draggable";
-import { Thumbs } from "../Thumbs";
+import { Navigation } from "@components/Navigation";
+import { ControlBar } from "@components/ControlBar";
+import { Draggable } from "@components/Draggable";
+import { Thumbs } from "@components/Thumbs";
 
-import { useGallery } from "../../hooks/useGallery";
-import { useControl } from "../../hooks/useControl";
+import { useGallery } from "@hooks/useGallery";
+import { useControl } from "@hooks/useControl";
 
 import { WrapperContainer, Container } from "./styles";
 import { MainContainerProps } from "./types";
@@ -17,6 +17,7 @@ import { MainContainerProps } from "./types";
  * @param selectedImage image index default
  * @param open control open/close gallery
  * @param handleClose function to close gallery
+ * @param showThumbs show thumbs in the gallery
  * @returns
  */
 

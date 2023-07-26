@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Container, ThumbImage } from "./styles";
 import { ThumbsProps } from "./types";
+import { Container, ThumbImage } from "./styles";
 
 export const Thumbs = ({ images, currentImage, handleChange }: ThumbsProps) => {
   return (

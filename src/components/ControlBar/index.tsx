@@ -7,9 +7,10 @@ import {
   ArrowsIn,
 } from "phosphor-react";
 
+import { ZoomKind } from "@hooks/useControl/types";
+
 import { Container, Buttons } from "./styles";
 import { ControlBarProps } from "./types";
-import { ZoomKind } from "../../hooks/useControl/types";
 
 export const ControlBar = ({
   amount,
