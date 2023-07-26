@@ -38,8 +38,8 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: fileURLToPath(new URL("./index.ts", import.meta.url)),
-      name: "MyLib",
+      entry: fileURLToPath(new URL("./src/index.ts", import.meta.url)),
+      name: "GalleryFy",
       formats: ["es", "umd"],
       fileName: (format) => `galleryfy.${format}.js`,
     },
