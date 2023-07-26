@@ -7,7 +7,7 @@ import {
   ArrowsIn,
 } from "phosphor-react";
 
-import { ZoomKind } from "@hooks/useControl/types";
+import { Direction, ZoomKind } from "@hooks/useControl/types";
 
 import { Container, Buttons } from "./styles";
 import { ControlBarProps } from "./types";
@@ -29,7 +29,7 @@ export const ControlBar: React.FunctionComponent<ControlBarProps> = ({
         <button
           type="button"
           title="Rotacionar anti-horário"
-          onClick={() => handleRotate("anticlockwise")}
+          onClick={() => handleRotate(Direction.ANTICLOCKWISE)}
         >
           <ArrowCounterClockwise size={20} color="#FFFFFF" />
         </button>
@@ -37,7 +37,7 @@ export const ControlBar: React.FunctionComponent<ControlBarProps> = ({
         <button
           type="button"
           title="Rotacionar"
-          onClick={() => handleRotate("clockwise")}
+          onClick={() => handleRotate(Direction.CLOCKWISE)}
         >
           <ArrowClockwise size={20} color="#FFFFFF" />
         </button>

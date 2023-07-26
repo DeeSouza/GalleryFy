@@ -31,6 +31,10 @@ export default defineConfig({
     ],
   },
   plugins: [react(), dts()],
+  test: {
+    globals: true,
+    environment: "jsdom",
+  },
   build: {
     lib: {
       entry: fileURLToPath(new URL("./src/index.ts", import.meta.url)),

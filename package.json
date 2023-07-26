@@ -14,6 +14,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
@@ -56,6 +59,9 @@
     "@storybook/react": "^7.1.1",
     "@storybook/react-vite": "^7.1.1",
     "@storybook/testing-library": "^0.2.0",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^14.0.0",
+    "@types/jest": "^29.5.3",
     "@types/node": "^20.4.5",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
@@ -67,10 +73,12 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "eslint-plugin-storybook": "^0.6.13",
+    "jsdom": "^22.1.0",
     "storybook": "^7.1.1",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
-    "vite-plugin-dts": "^3.3.1"
+    "vite-plugin-dts": "^3.3.1",
+    "vitest": "^0.33.0"
   },
   "repository": {
     "type": "git",
