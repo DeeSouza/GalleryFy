@@ -21,6 +21,7 @@
     "build-storybook-docs": "storybook build --docs",
     "deploy": "npm version patch && npm publish --access=public"
   },
+  "module": "src",
   "files": [
     "dist",
     "src",
