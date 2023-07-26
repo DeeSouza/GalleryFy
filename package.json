@@ -1,7 +1,12 @@
 {
-  "name": "gallerify",
+  "name": "@deesouza/gallerify",
+  "author": {
+    "email": "dee-souza@hotmail.com",
+    "name": "Diego Souza",
+    "url": "https://github.com/deesouza"
+  },
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,7 +16,16 @@
     "storybook": "storybook dev -p 6006",
     "storybook-docs": "storybook dev --docs",
     "build-storybook": "storybook build",
-    "build-storybook-docs": "storybook build --docs"
+    "build-storybook-docs": "storybook build --docs",
+    "deploy": "npm version patch && npm publish"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "react": ">=16"
   },
   "dependencies": {
     "phosphor-react": "^1.4.1",
@@ -42,5 +56,15 @@
     "storybook": "^7.1.1",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeeSouza/GalleryFy.git"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "galleryfy"
+  ],
+  "license": "MIT"
 }
