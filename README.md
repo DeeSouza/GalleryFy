@@ -11,6 +11,8 @@ GalleryFy is a React library to show images in the gallery.
 npm install @deesouza/galleryfy
 ```
 
+![Example GalleryFy](./galleryfy.png)
+
 ## Usage
 
 ```js
