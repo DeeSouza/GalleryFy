@@ -1,14 +1,14 @@
 {
-  "name": "@deesouza/gallerify",
+  "name": "@deesouza/galleryfy",
   "author": {
     "email": "dee-souza@hotmail.com",
     "name": "Diego Souza",
     "url": "https://github.com/deesouza"
   },
-  "version": "1.0.2",
+  "version": "1.0.0",
   "type": "module",
   "publishConfig": {
-    "registry": "https://npmjs.com/package/@deesouza/gallerify"
+    "registry": "https://npmjs.com/package/@deesouza/galleryfy"
   },
   "scripts": {
     "dev": "vite",
