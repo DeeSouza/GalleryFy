@@ -26,13 +26,12 @@
     "LICENSE",
     "README.md"
   ],
-  "main": "./dist/main.cjs.js",
+  "main": "./dist/main.umd.js",
   "module": "./dist/main.es.js",
-  "typings": "./dist/main.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/main.es.js",
-      "require": "./dist/main.cjs.js"
+      "import": "./dist/my-component.es.js",
+      "require": "./dist/my-component.umd.js"
     }
   },
   "peerDependencies": {

@@ -32,7 +32,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     lib: {
-      entry: fileURLToPath(new URL("./src/index", import.meta.url)),
+      entry: fileURLToPath(new URL("./src/index.ts", import.meta.url)),
       name: "GalleryFy",
       fileName: (format) => `main.${format}.js`,
     },
