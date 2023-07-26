@@ -25,7 +25,8 @@
     "dist",
     "src",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "index.ts"
   ],
   "peerDependencies": {
     "react": ">=16"
