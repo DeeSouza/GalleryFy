@@ -13,7 +13,7 @@ import { GalleryFyProps } from "./types";
 
 /**
  *
- * @param images array from URL's images
+ * @param images array from URL's images or path assets image
  * @param selectedImage image index default
  * @param open control open/close gallery
  * @param handleClose function to close gallery

@@ -18,6 +18,7 @@ export const WrapperContainer = styled.div<WrapperContainerProps>`
   position: fixed;
   left: 0;
   top: 0;
+  z-index: 9999;
 `;
 
 export const Container = styled.div`

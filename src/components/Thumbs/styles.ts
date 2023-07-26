@@ -1,4 +1,4 @@
-import { css, styled } from "styled-components";
+import { styled } from "styled-components";
 
 interface ThumbImageProps {
   image: string;
@@ -23,17 +23,13 @@ export const ThumbImage = styled.div<ThumbImageProps>`
   width: 60px;
   height: 60px;
   background-size: cover;
+  background-position: center;
   border-radius: 8px;
   cursor: pointer;
-  border: 3px solid #393939;
+  border: ${(props) =>
+    props.$actived ? "3px solid #c7c7c7" : "3px solid #393939"};
   opacity: 0.6;
   transition: opacity 0.25s ease-in-out;
-
-  ${(props) =>
-    props.$actived &&
-    css`
-      border: 3px solid #c7c7c7;
-    `}
 
   &:hover {
     opacity: 1;

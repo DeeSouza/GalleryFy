@@ -19,6 +19,14 @@ export default defineConfig({
         find: "@hooks",
         replacement: fileURLToPath(new URL("./src/hooks", import.meta.url)),
       },
+      {
+        find: "@example",
+        replacement: fileURLToPath(new URL("./src/example", import.meta.url)),
+      },
+      {
+        find: "@assets",
+        replacement: fileURLToPath(new URL("./src/assets", import.meta.url)),
+      },
     ],
   },
   plugins: [react()],
