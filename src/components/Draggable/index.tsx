@@ -12,6 +12,7 @@ export const Draggable = ({
 
   const onMouseDown = useCallback((event: MouseEvent) => {
     isMouseDown = true;
+
     const dragDiv = dragRef.current;
     if (!dragDiv) return;
 
