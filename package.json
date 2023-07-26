@@ -24,17 +24,26 @@
     "LICENSE",
     "README.md"
   ],
+  "main": "./dist/main.umd.js",
+  "module": "./dist/main.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/main.es.js",
+      "require": "./dist/main.umd.js"
+    }
+  },
   "peerDependencies": {
     "react": ">=16"
   },
   "dependencies": {
     "phosphor-react": "^1.4.1",
-    "react": "^18.2.0",
+    "react": ">=16",
     "react-dom": "^18.2.0",
     "styled-components": "^6.0.5",
     "url": "^0.11.1"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.2",
     "@storybook/addon-essentials": "^7.1.1",
     "@storybook/addon-interactions": "^7.1.1",
     "@storybook/addon-links": "^7.1.1",
@@ -43,6 +52,7 @@
     "@storybook/react": "^7.1.1",
     "@storybook/react-vite": "^7.1.1",
     "@storybook/testing-library": "^0.2.0",
+    "@types/node": "^20.4.5",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/styled-components": "^5.1.26",
@@ -54,6 +64,7 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "eslint-plugin-storybook": "^0.6.13",
     "storybook": "^7.1.1",
+    "tslib": "^2.6.1",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   },
