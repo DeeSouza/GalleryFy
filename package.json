@@ -23,10 +23,8 @@
   },
   "files": [
     "dist",
-    "src",
     "LICENSE",
-    "README.md",
-    "index.ts"
+    "README.md"
   ],
   "main": "./dist/galleryfy.umd.js",
   "module": "./dist/galleryfy.es.js",

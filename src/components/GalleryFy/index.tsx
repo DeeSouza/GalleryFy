@@ -21,7 +21,7 @@ import { GalleryFyProps } from "./types";
  * @returns
  */
 
-const GalleryFy = ({
+const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
   images = [],
   selectedImage,
   open = false,

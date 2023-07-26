@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from "react";
 import { DraggableProps } from "./types";
 import { Container } from "./styles";
 
-export const Draggable = ({
+export const Draggable: React.FunctionComponent<DraggableProps> = ({
   children,
   positionStart = { x: 0, y: 0 },
 }: DraggableProps) => {

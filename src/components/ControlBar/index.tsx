@@ -12,7 +12,7 @@ import { ZoomKind } from "@hooks/useControl/types";
 import { Container, Buttons } from "./styles";
 import { ControlBarProps } from "./types";
 
-export const ControlBar = ({
+export const ControlBar: React.FunctionComponent<ControlBarProps> = ({
   amount,
   current,
   handleClose,

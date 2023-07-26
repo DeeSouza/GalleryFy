@@ -3,7 +3,11 @@ import React from "react";
 import { ThumbsProps } from "./types";
 import { Container, ThumbImage } from "./styles";
 
-export const Thumbs = ({ images, currentImage, handleChange }: ThumbsProps) => {
+export const Thumbs: React.FunctionComponent<ThumbsProps> = ({
+  images,
+  currentImage,
+  handleChange,
+}: ThumbsProps) => {
   return (
     <Container>
       {React.Children.toArray(
