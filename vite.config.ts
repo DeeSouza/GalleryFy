@@ -35,7 +35,7 @@ export default defineConfig({
     lib: {
       entry: fileURLToPath(new URL("./src/index.ts", import.meta.url)),
       name: "GalleryFy",
-      fileName: (format) => `main.${format}.js`,
+      fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
       external: ["react", "react-dom"],
