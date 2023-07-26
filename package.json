@@ -22,7 +22,7 @@
     "deploy": "npm version patch && npm publish --access=public"
   },
   "files": [
-    "dist",
+    "/dist",
     "LICENSE",
     "README.md"
   ],
