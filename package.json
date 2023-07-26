@@ -1,5 +1,6 @@
 {
   "name": "@deesouza/galleryfy",
+  "homepage": "https://deesouza.github.io/GalleryFy",
   "author": {
     "email": "dee-souza@hotmail.com",
     "name": "Diego Souza",
@@ -19,7 +20,8 @@
     "storybook-docs": "storybook dev --docs",
     "build-storybook": "storybook build",
     "build-storybook-docs": "storybook build --docs",
-    "deploy": "npm version patch && npm publish --access=public"
+    "deploy": "npm version patch && npm publish --access=public",
+    "deploy-storybook": "gh-pages -d storybook-static"
   },
   "files": [
     "/dist",

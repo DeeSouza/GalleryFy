@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { GalleryFyProps } from "./types";
-import GalleryFy from ".";
+import GalleryFy from "./";
 
 import image1 from "@assets/image-example-1.png";
 import image2 from "@assets/image-example-2.png";
@@ -8,7 +8,7 @@ import image3 from "@assets/image-example-3.png";
 
 const images = [image1, image2, image3];
 
-export default {
+const MetaComponent: Meta<GalleryFyProps> = {
   title: "Components/GalleryFy",
   component: GalleryFy,
   tags: ["autodocs"],
@@ -38,6 +38,7 @@ export default {
       },
     },
   },
-} as Meta<GalleryFyProps>;
+};
 
+export default MetaComponent;
 export const Default: StoryObj<GalleryFyProps> = {};
