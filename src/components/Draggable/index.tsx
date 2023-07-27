@@ -59,9 +59,5 @@ export const Draggable: React.FunctionComponent<DraggableProps> = ({
     };
   }, [onMouseDown, onMouseUp, onMouseMove]);
 
-  return (
-    <Container ref={dragRef} $positionStart={positionStart}>
-      {children}
-    </Container>
-  );
+  return <Container ref={dragRef}>{children}</Container>;
 };

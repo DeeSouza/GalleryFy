@@ -1,13 +1,6 @@
 import { styled } from "styled-components";
 
-interface ContainerProps {
-  $positionStart: {
-    x: number;
-    y: number;
-  };
-}
-
-export const Container = styled.div<ContainerProps>`
+export const Container = styled.div`
   position: relative;
   user-select: none;
   cursor: grab;

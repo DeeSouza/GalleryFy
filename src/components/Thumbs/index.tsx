@@ -13,8 +13,8 @@ export const Thumbs: React.FunctionComponent<ThumbsProps> = ({
       {React.Children.toArray(
         images.map((image, index: number) => (
           <ThumbImage
-            image={image}
             onClick={() => handleChange(index)}
+            $image={image}
             $actived={index === currentImage}
           />
         ))

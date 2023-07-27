@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface WrapperContainerProps {
-  open: boolean;
+  $open: boolean;
 }
 
 export const WrapperContainer = styled.div<WrapperContainerProps>`
@@ -9,7 +9,7 @@ export const WrapperContainer = styled.div<WrapperContainerProps>`
   width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
 
-  display: ${(props) => (props.open ? "flex" : "none")};
+  display: ${({ $open }) => ($open ? "flex" : "none")};
   flex: 1;
   justify-content: center;
   align-items: center;

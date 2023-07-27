@@ -62,7 +62,7 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
   }
 
   return (
-    <WrapperContainer open={open}>
+    <WrapperContainer $open={open}>
       <ControlBar
         amount={amountImages}
         current={currentImage}
