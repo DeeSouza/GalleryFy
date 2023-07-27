@@ -1,3 +1,8 @@
+export interface UseControlProps {
+    handleRotate(direction: Direction): void;
+    handleZoom(type: ZoomKind): void;
+    handleReset(): void;
+}
 export declare enum ZoomKind {
     IN = "IN",
     OUT = "OUT",

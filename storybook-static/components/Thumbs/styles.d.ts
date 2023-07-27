@@ -1,7 +1,8 @@
 /// <reference types="react" />
 /// <reference types="react" />
 interface ThumbImageProps {
-    $image: string;
+    $cover: string;
+    $ext: string;
     $actived: boolean;
 }
 export declare const Container: import("styled-components").IStyledComponent<"web", {
