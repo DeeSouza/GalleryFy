@@ -4,6 +4,10 @@ interface WrapperContainerProps {
   $open: boolean;
 }
 
+interface ImageContainerProps {
+  $loaded: boolean;
+}
+
 export const WrapperContainer = styled.div<WrapperContainerProps>`
   height: 100vh;
   width: 100%;
@@ -45,4 +49,8 @@ export const Container = styled.div`
       user-select: none;
     }
   }
+`;
+
+export const ImageContainer = styled.img<ImageContainerProps>`
+  display: ${({ $loaded }) => ($loaded ? "block" : "none")};
 `;

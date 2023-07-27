@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useRef } from "react";
+
+import { isMouse, isTouch } from "@utils/events";
+
 import { DraggableProps } from "./types";
 import { Container } from "./styles";
-import { isMouse, isTouch } from "@utils/events";
 
 export const Draggable: React.FunctionComponent<DraggableProps> = ({
   children,

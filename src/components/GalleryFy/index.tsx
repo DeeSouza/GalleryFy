@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { formatDataSource } from "@utils/gallery";
 
@@ -10,8 +10,9 @@ import { Thumbs } from "@components/Thumbs";
 import { useGallery } from "@hooks/useGallery";
 import { useControl } from "@hooks/useControl";
 
-import { WrapperContainer, Container } from "./styles";
+import { WrapperContainer, Container, ImageContainer } from "./styles";
 import { GalleryFyProps } from "./types";
+import { Loading } from "@components/Loading";
 
 /**
  *
@@ -30,6 +31,7 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
   showThumbs = true,
   handleClose = () => {},
 }: GalleryFyProps) => {
+  const [loaded, setLoaded] = useState<boolean>(false);
   const wrapperImage = useRef<HTMLDivElement | null>(null);
   const wrapperContainer = useRef<HTMLDivElement | null>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
@@ -53,14 +55,14 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
     wrapperContainer
   );
 
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "auto";
-  }, [open]);
-
   function handleCloseGallery() {
     handleClose();
     handleReset();
   }
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "auto";
+  }, [open]);
 
   return (
     <WrapperContainer $open={open}>
@@ -73,15 +75,22 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
       />
 
       <Container ref={wrapperContainer}>
+        {!loaded && <Loading />}
+
         {formattedDataSource[current].iframe ? (
-          <iframe src={formattedDataSource[current].src} />
+          <iframe
+            src={formattedDataSource[current].src}
+            onLoad={() => setLoaded(true)}
+          />
         ) : (
           <Draggable>
             <div ref={wrapperImage}>
-              <img
+              <ImageContainer
                 src={formattedDataSource[current].src}
                 ref={imageRef}
                 draggable="false"
+                onLoad={() => setLoaded(true)}
+                $loaded={loaded}
               />
             </div>
           </Draggable>
