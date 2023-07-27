@@ -78,3 +78,5 @@ export default function Home() {
 - Rotate
 - Thumbnails
 - Navigation
+- Image Viewer
+- PDF Viewer
