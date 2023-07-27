@@ -10,6 +10,7 @@ export const Container = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
+  align-content: center;
   align-items: center;
   gap: 5px;
   overflow-x: auto;

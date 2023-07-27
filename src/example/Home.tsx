@@ -16,32 +16,7 @@ export default function Home() {
     setOpen(true);
   }
 
-  const images = [
-    image1,
-    image2,
-    image3,
-    image1,
-    image2,
-    image3,
-    image1,
-    image2,
-    image3,
-    image1,
-    image2,
-    image3,
-    image1,
-    image2,
-    image3,
-    image1,
-    image2,
-    image3,
-    image1,
-    image2,
-    image3,
-    image1,
-    image2,
-    image3,
-  ];
+  const images = [image1, image2, image3];
 
   return (
     <div>
