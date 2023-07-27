@@ -20,10 +20,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "storybook-docs": "storybook dev --docs",
     "build-storybook": "storybook build && touch ./storybook-static/.nojekyll",
-    "build-storybook-docs": "storybook build --docs",
-    "deploy": "npm version patch && npm publish --access=public",
+    "pub": "npm version patch && npm publish --access=public",
     "deploy-storybook": "gh-pages -d storybook-static -t true"
   },
   "files": [

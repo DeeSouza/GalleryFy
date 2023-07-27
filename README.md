@@ -61,3 +61,11 @@ function handleOpen(index: number) {
     ))}
 </div>
 ``````
+
+## Features
+
+- Zoom
+- Draggable
+- Rotate
+- Thumbnails
+- Navigation
