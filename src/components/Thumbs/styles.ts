@@ -1,7 +1,10 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
+
+import coverPdf from "@assets/pdf.png";
 
 interface ThumbImageProps {
-  $image: string;
+  $cover: string;
+  $ext: string;
   $actived: boolean;
 }
 
@@ -28,7 +31,6 @@ export const Container = styled.div`
 `;
 
 export const ThumbImage = styled.div<ThumbImageProps>`
-  background-image: url(${({ $image }) => $image});
   width: 60px;
   height: 60px;
   background-size: cover;
@@ -38,6 +40,16 @@ export const ThumbImage = styled.div<ThumbImageProps>`
   border: ${({ $actived }) =>
     $actived ? "2px solid #ffec4f" : "2px solid #FFFFFF"};
   transition: all 0.25s ease-in-out;
+
+  ${({ $ext, $cover }) =>
+    $ext === "pdf"
+      ? css`
+          background-image: url(${coverPdf});
+          background-color: #fff;
+        `
+      : css`
+          background-image: url(${$cover});
+        `};
 
   &:hover {
     border: 2px solid #ffec4f;

@@ -30,6 +30,12 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
+  > iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
   > div:first-child {
     max-width: 1280px;
 

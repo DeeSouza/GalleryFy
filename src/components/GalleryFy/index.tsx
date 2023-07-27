@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+
+import { formatDataSource } from "@utils/gallery";
 
 import { Navigation } from "@components/Navigation";
 import { ControlBar } from "@components/ControlBar";
@@ -13,8 +15,8 @@ import { GalleryFyProps } from "./types";
 
 /**
  *
- * @param images array from URL's images or path assets image
- * @param selectedImage image index default
+ * @param dataSource array from URL's files or path assets files
+ * @param startIn file index default
  * @param open control open/close gallery
  * @param handleClose function to close gallery
  * @param showThumbs show thumbs in the gallery
@@ -22,28 +24,28 @@ import { GalleryFyProps } from "./types";
  */
 
 const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
-  images = [],
-  selectedImage,
+  dataSource = [],
+  startIn,
   open = false,
   showThumbs = true,
   handleClose = () => {},
 }: GalleryFyProps) => {
-  const [positionStart, setPositionStart] = useState({ x: 0, y: 0 });
   const wrapperImage = useRef<HTMLDivElement | null>(null);
   const wrapperContainer = useRef<HTMLDivElement | null>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
+  const formattedDataSource = formatDataSource(dataSource);
 
   const {
-    isFirstImage,
-    isLastImage,
+    isFirstIndex,
+    isLastIndex,
     handleChange,
     handleChangeNext,
     handleChangePrev,
-    currentImage,
-    amountImages,
+    current,
+    amountData,
   } = useGallery({
-    images,
-    selectedImage,
+    dataSource: formattedDataSource,
+    startIn,
   });
 
   const { handleRotate, handleZoom, handleReset } = useControl(
@@ -58,37 +60,44 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
   function handleCloseGallery() {
     handleClose();
     handleReset();
-    setPositionStart({ x: 0, y: 0 });
   }
 
   return (
     <WrapperContainer $open={open}>
       <ControlBar
-        amount={amountImages}
-        current={currentImage}
+        amount={amountData}
+        current={current}
         handleClose={handleCloseGallery}
         handleZoom={handleZoom}
         handleRotate={(direction) => handleRotate(direction)}
       />
 
       <Container ref={wrapperContainer}>
-        <Draggable positionStart={positionStart}>
-          <div ref={wrapperImage}>
-            <img src={images[currentImage]} ref={imageRef} draggable="false" />
-          </div>
-        </Draggable>
+        {formattedDataSource[current].iframe ? (
+          <iframe src={formattedDataSource[current].src} />
+        ) : (
+          <Draggable>
+            <div ref={wrapperImage}>
+              <img
+                src={formattedDataSource[current].src}
+                ref={imageRef}
+                draggable="false"
+              />
+            </div>
+          </Draggable>
+        )}
 
         <Navigation.Root>
-          {!isFirstImage && <Navigation.Left handle={handleChangePrev} />}
-          {!isLastImage && <Navigation.Right handle={handleChangeNext} />}
+          {!isFirstIndex && <Navigation.Left handle={handleChangePrev} />}
+          {!isLastIndex && <Navigation.Right handle={handleChangeNext} />}
         </Navigation.Root>
       </Container>
 
       {showThumbs && (
         <Thumbs
-          images={images}
+          dataSource={formattedDataSource}
           handleChange={handleChange}
-          currentImage={currentImage}
+          currentImage={current}
         />
       )}
     </WrapperContainer>

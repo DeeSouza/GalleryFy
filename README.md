@@ -15,52 +15,61 @@ npm install @deesouza/galleryfy
 
 ## Usage
 
-```js
-import { GalleryFy } from '@deesouza/galleryfy';
+```jsx
 
-const images [
-    'https://cdn.images.com/image-1.png',
-    'https://cdn.images.com/image-2.png',
-    'https://cdn.images.com/image-3.png',
-];
 
-/*
+export default function Home() {
+    const images [
+        'https://cdn.images.com/image-1.png',
+        'https://cdn.images.com/image-2.png',
+        'https://cdn.images.com/image-3.png',
+    ];
 
-You can use images from assets
+  const [openInImage, setOpenInImage] = useState(0);
+  const [open, setOpen] = useState(false);
 
-import image1 from '@assets/images/image-1.jpg';
-import image2 from '@assets/images/image-2.jpg';
-import image3 from '@assets/images/image-3.jpg';
-
-const images = [
-    image1, image2, image3
-];
-
-*/
-
-const [openInImage, setOpenInImage] = useState(0);
-const [open, setOpen] = useState(false);
-
-function handleOpen(index: number) {
+  function handleOpen(index: number) {
     setOpenInImage(index);
     setOpen(true);
+  }
+
+    /*
+
+    You can use images from assets
+
+    import image1 from '@assets/images/image-1.jpg';
+    import image2 from '@assets/images/image-2.jpg';
+    import image3 from '@assets/images/image-3.jpg';
+
+    const images = [
+        image1, image2, image3
+    ];
+
+    */
+
+  const images = [image1, image2, image3];
+
+  return (
+    <div>
+      <GalleryFy
+        open={open}
+        images={images}
+        selectedImage={openInImage}
+        handleClose={() => setOpen(false)}
+      />
+
+      <div>
+        {images.map((image, index) => (
+          <div key={image} onClick={() => handleOpen(index)}>
+            <img src={image} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
-<GalleryFy
-    open={open}
-    images={images}
-    selectedImage={openInImage}
-    handleClose={() => setOpen(false)}
-/>
-
-<div>
-    {images.map((image, index) => (
-        <div key={image} onClick={() => handleOpen(index)}>
-            <img src={image} />
-        </div>
-    ))}
-</div>
-``````
+```
 
 ## Features
 

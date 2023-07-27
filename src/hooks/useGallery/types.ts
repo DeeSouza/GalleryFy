@@ -1,17 +1,22 @@
+export interface DataSource {
+  src: string;
+  ext: string;
+}
+
 export enum ActionKind {
   CHANGE = "CHANGE",
 }
 
 export interface Props {
-  images: string[];
-  selectedImage?: number;
+  dataSource: DataSource[];
+  startIn?: number;
 }
 
 export interface InitialStateProps {
-  selectedImage: number;
+  startIn: number;
 }
 
 export interface ActionProps {
   type: ActionKind;
-  selectedImage: number;
+  startIn: number;
 }

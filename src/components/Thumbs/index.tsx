@@ -4,7 +4,7 @@ import { ThumbsProps } from "./types";
 import { Container, ThumbImage } from "./styles";
 
 export const Thumbs: React.FunctionComponent<ThumbsProps> = ({
-  images,
+  dataSource,
   currentImage,
   handleChange,
 }: ThumbsProps) => {
@@ -53,10 +53,11 @@ export const Thumbs: React.FunctionComponent<ThumbsProps> = ({
   return (
     <Container ref={thumbsRef}>
       {React.Children.toArray(
-        images.map((image, index: number) => (
+        dataSource.map((file, index: number) => (
           <ThumbImage
             onClick={() => handleChange(index)}
-            $image={image}
+            $cover={file.src}
+            $ext={file.ext}
             $actived={index === currentImage}
           />
         ))

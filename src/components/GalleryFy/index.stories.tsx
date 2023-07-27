@@ -6,7 +6,7 @@ import image1 from "@assets/image-example-1.png";
 import image2 from "@assets/image-example-2.png";
 import image3 from "@assets/image-example-3.png";
 
-const images = [image1, image2, image3];
+const dataSource = [image1, image2, image3];
 
 const MetaComponent: Meta<GalleryFyProps> = {
   title: "Components/GalleryFy",
@@ -22,12 +22,12 @@ const MetaComponent: Meta<GalleryFyProps> = {
   },
   args: {
     open: true,
-    images,
+    dataSource,
   },
   argTypes: {
-    selectedImage: {
+    startIn: {
       control: "select",
-      options: Object.keys(images),
+      options: Object.keys(dataSource),
     },
     handleClose: {
       docs: {

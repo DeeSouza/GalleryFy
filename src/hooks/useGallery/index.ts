@@ -1,65 +1,67 @@
-import { useEffect, useMemo, useReducer } from "react";
+import { useCallback, useEffect, useMemo, useReducer } from "react";
 import { ActionKind, ActionProps, InitialStateProps, Props } from "./types";
 
 const initialState: InitialStateProps = {
-  selectedImage: 0,
+  startIn: 0,
 };
 
 function reducer(state: InitialStateProps, action: ActionProps) {
   if (action.type === ActionKind.CHANGE) {
     return {
-      selectedImage: action.selectedImage,
+      startIn: action.startIn,
     };
   }
 
   return state;
 }
 
-export const useGallery = ({ images, selectedImage }: Props) => {
+export const useGallery = ({ dataSource, startIn }: Props) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  useEffect(() => {
-    if (!selectedImage) return;
-
-    handleChange(selectedImage);
-  }, [selectedImage]);
-
-  function handleChange(selectedImage: number) {
+  const handleChange = useCallback((startIn: number) => {
     dispatch({
       type: ActionKind.CHANGE,
-      selectedImage,
+      startIn,
     });
-  }
+  }, []);
 
   function handleChangeNext() {
     dispatch({
       type: ActionKind.CHANGE,
-      selectedImage: state.selectedImage + 1,
+      startIn: state.startIn + 1,
     });
   }
 
   function handleChangePrev() {
     dispatch({
       type: ActionKind.CHANGE,
-      selectedImage: state.selectedImage - 1,
+      startIn: state.startIn - 1,
     });
   }
 
-  const isFirstImage = useMemo(() => {
-    return state.selectedImage === 0;
-  }, [state.selectedImage]);
+  const isFirstIndex = useMemo(() => {
+    return state.startIn === 0;
+  }, [state.startIn]);
 
-  const isLastImage = useMemo(() => {
-    return state.selectedImage === images.length - 1;
-  }, [state.selectedImage, images.length]);
+  const isLastIndex = useMemo(() => {
+    return state.startIn === dataSource.length - 1;
+  }, [state.startIn, dataSource.length]);
+
+  useEffect(() => {
+    if (startIn === undefined) {
+      return handleChange(0);
+    }
+
+    handleChange(startIn);
+  }, [startIn, handleChange]);
 
   return {
-    isFirstImage,
-    isLastImage,
+    isFirstIndex,
+    isLastIndex,
     handleChange,
     handleChangeNext,
     handleChangePrev,
-    currentImage: state.selectedImage,
-    amountImages: images.length,
+    current: state.startIn,
+    amountData: dataSource.length,
   };
 };
