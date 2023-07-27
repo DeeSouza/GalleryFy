@@ -1,7 +1,7 @@
 import { RefObject } from "react";
-import { ZoomKind } from "./types";
+import { Direction, ZoomKind } from "./types";
 export declare const useControl: (wrapperImage: RefObject<HTMLDivElement>, wrapperElement: RefObject<HTMLDivElement>) => {
-    handleRotate: (direction: string) => void;
+    handleRotate: (direction: Direction) => void;
     handleZoom: (type: ZoomKind) => void;
     handleReset: () => void;
 };
