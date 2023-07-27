@@ -1,46 +1,70 @@
 import { useCallback, useEffect, useRef } from "react";
 import { DraggableProps } from "./types";
 import { Container } from "./styles";
+import { isMouse, isTouch } from "@utils/events";
 
 export const Draggable: React.FunctionComponent<DraggableProps> = ({
   children,
-  positionStart = { x: 0, y: 0 },
 }: DraggableProps) => {
   const dragRef = useRef<HTMLDivElement>(null);
   let isMouseDown: boolean = false;
   let offset: number[] = [0, 0];
 
-  const onMouseDown = useCallback((event: MouseEvent) => {
+  const onMouseDown = useCallback((event: MouseEvent | TouchEvent) => {
     isMouseDown = true;
-
     const dragDiv = dragRef.current;
+
     if (!dragDiv) return;
 
     dragDiv.style.position = "absolute";
+    let left = 0;
+    let top = 0;
 
-    const x: number = event.clientX;
-    const y: number = event.clientY;
+    if (isTouch(event)) {
+      left = dragDiv.offsetLeft - event.touches[0].clientX;
+      top = dragDiv.offsetTop - event.touches[0].clientY;
+    }
 
-    offset = [dragDiv.offsetLeft - x, dragDiv.offsetTop - y];
+    if (isMouse(event)) {
+      left = dragDiv.offsetLeft - event.clientX;
+      top = dragDiv.offsetTop - event.clientY;
+    }
+
+    offset = [left, top];
 
     dragDiv.addEventListener("mouseup", onMouseUp, true);
+    dragDiv.addEventListener("touchend", onMouseUp, true);
     document.addEventListener("mousemove", onMouseMove, true);
+    document.addEventListener("touchmove", onMouseMove, true);
   }, []);
 
   const onMouseUp = useCallback(() => {
     isMouseDown = false;
 
+    document.removeEventListener("touchmove", onMouseMove, true);
     document.removeEventListener("mousemove", onMouseMove, true);
   }, []);
 
   const onMouseMove = useCallback(
-    (event: MouseEvent) => {
+    (event: MouseEvent | TouchEvent) => {
       if (isMouseDown && dragRef.current) {
-        const x: number = event.clientX;
-        const y: number = event.clientY;
+        let dragX = 0;
+        let dragY = 0;
 
-        dragRef.current.style.left = `${x + offset[0]}px`;
-        dragRef.current.style.top = `${y + offset[1]}px`;
+        if (isTouch(event)) {
+          dragX = event.touches[0].clientX + offset[0];
+          dragY = event.touches[0].clientY + offset[1];
+        }
+
+        if (isMouse(event)) {
+          event.preventDefault();
+
+          dragX = event.clientX + offset[0];
+          dragY = event.clientY + offset[1];
+        }
+
+        dragRef.current.style.left = `${dragX}px`;
+        dragRef.current.style.top = `${dragY}px`;
       }
     },
     [isMouseDown, offset]
@@ -50,6 +74,7 @@ export const Draggable: React.FunctionComponent<DraggableProps> = ({
     const dragDiv = dragRef.current;
     if (!dragDiv) return;
 
+    dragDiv.addEventListener("touchstart", onMouseDown);
     dragDiv.addEventListener("mousedown", onMouseDown);
 
     return () => {

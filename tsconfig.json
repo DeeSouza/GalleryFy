@@ -28,6 +28,7 @@
       "@hooks/*": ["./hooks/*"],
       "@components/*": ["./components/*"],
       "@assets/*": ["./assets/*"],
+      "@utils/*": ["./utils/*"],
       "@example/*": ["./example/*"],
     }
   },
