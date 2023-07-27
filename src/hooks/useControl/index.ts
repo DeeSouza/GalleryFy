@@ -1,5 +1,5 @@
 import { RefObject, useCallback, useMemo, useState } from "react";
-import { ZoomKind } from "./types";
+import { Direction, ZoomKind } from "./types";
 
 export const useControl = (
   wrapperImage: RefObject<HTMLDivElement>,
@@ -10,7 +10,7 @@ export const useControl = (
   const degree360 = useMemo(() => [360, -360], []);
 
   const handleRotate = useCallback(
-    (direction: string) => {
+    (direction: Direction) => {
       if (!wrapperImage.current || !wrapperElement.current) return;
 
       const currentElement = wrapperImage.current;
@@ -22,7 +22,9 @@ export const useControl = (
       );
 
       let rotateCalc =
-        direction === "clockwise" ? currentRotate + 90 : currentRotate - 90;
+        direction === Direction.CLOCKWISE
+          ? currentRotate + 90
+          : currentRotate - 90;
 
       if (degree360.includes(rotateCalc)) {
         rotateCalc = 0;
