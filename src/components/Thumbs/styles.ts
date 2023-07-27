@@ -14,9 +14,9 @@ export const Container = styled.div`
   align-items: center;
   gap: 5px;
   overflow-x: auto;
-  background-color: #393939;
+  background-color: #141414;
   width: 100%;
-  height: 80px;
+  height: 70px;
   box-sizing: border-box;
   padding: 0 10px;
   position: relative;
@@ -33,14 +33,13 @@ export const ThumbImage = styled.div<ThumbImageProps>`
   height: 60px;
   background-size: cover;
   background-position: center;
-  border-radius: 8px;
+  border-radius: 4px;
   cursor: pointer;
   border: ${({ $actived }) =>
-    $actived ? "3px solid #c7c7c7" : "3px solid #393939"};
-  opacity: 0.6;
-  transition: opacity 0.25s ease-in-out;
+    $actived ? "2px solid #ffec4f" : "2px solid #FFFFFF"};
+  transition: all 0.25s ease-in-out;
 
   &:hover {
-    opacity: 1;
+    border: 2px solid #ffec4f;
   }
 `;
