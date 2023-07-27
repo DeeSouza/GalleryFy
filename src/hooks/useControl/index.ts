@@ -1,12 +1,11 @@
 import { RefObject, useCallback, useMemo, useState } from "react";
-import { Direction, ZoomKind } from "./types";
+import { Direction, UseControlProps, ZoomKind } from "./types";
 
 export const useControl = (
   wrapperImage: RefObject<HTMLDivElement>,
   wrapperElement: RefObject<HTMLDivElement>
-) => {
+): UseControlProps => {
   const [, setZoom] = useState(1);
-  const degreeVertical = useMemo(() => [90, 270, -90, -270], []);
   const degree360 = useMemo(() => [360, -360], []);
 
   const handleRotate = useCallback(
@@ -14,8 +13,6 @@ export const useControl = (
       if (!wrapperImage.current || !wrapperElement.current) return;
 
       const currentElement = wrapperImage.current;
-      const heightWrapperElement = wrapperElement.current.offsetHeight;
-      const imageElement = currentElement.firstChild as HTMLImageElement;
 
       const currentRotate = Number(
         currentElement.style.transform.replace(/[^-\d.]/g, "")
@@ -31,16 +28,8 @@ export const useControl = (
       }
 
       currentElement.style.transform = `rotate(${rotateCalc}deg)`;
-
-      if (degreeVertical.includes(rotateCalc)) {
-        currentElement.style.maxWidth = `${heightWrapperElement}px`;
-        imageElement.style.width = "100%";
-      } else {
-        currentElement.style.maxWidth = "1280px";
-        imageElement.style.width = "auto";
-      }
     },
-    [wrapperImage, wrapperElement, degree360, degreeVertical]
+    [wrapperImage, wrapperElement, degree360]
   );
 
   const handleReset = useCallback(() => {

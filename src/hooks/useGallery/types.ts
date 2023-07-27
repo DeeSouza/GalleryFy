@@ -1,3 +1,13 @@
+export interface UseGalleryProps {
+  isFirstIndex: boolean;
+  isLastIndex: boolean;
+  handleChange(index: number): void;
+  handleChangeNext(): void;
+  handleChangePrev(): void;
+  current: number;
+  amountData: number;
+}
+
 export interface DataSource {
   src: string;
   ext: string;

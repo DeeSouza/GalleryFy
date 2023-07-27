@@ -17,13 +17,14 @@ export const Container = styled.div`
   align-items: center;
   gap: 5px;
   overflow-x: auto;
-  background-color: #141414;
+  background-color: snow;
   width: 100%;
   height: 70px;
   box-sizing: border-box;
   padding: 0 10px;
   position: relative;
   z-index: 1;
+  box-shadow: 0px 0px 60px 15px rgba(0, 0, 0, 0.17);
 
   &::-webkit-scrollbar {
     height: 0px;
@@ -35,10 +36,10 @@ export const ThumbImage = styled.div<ThumbImageProps>`
   height: 60px;
   background-size: cover;
   background-position: center;
-  border-radius: 4px;
+  opacity: 1;
+  border: 2px solid #000;
   cursor: pointer;
-  border: ${({ $actived }) =>
-    $actived ? "2px solid #ffec4f" : "2px solid #FFFFFF"};
+  opacity: ${({ $actived }) => ($actived ? 0.5 : 1)};
   transition: all 0.25s ease-in-out;
 
   ${({ $ext, $cover }) =>
@@ -52,6 +53,6 @@ export const ThumbImage = styled.div<ThumbImageProps>`
         `};
 
   &:hover {
-    border: 2px solid #ffec4f;
+    opacity: 0.5;
   }
 `;

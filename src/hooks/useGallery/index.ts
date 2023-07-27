@@ -1,5 +1,11 @@
 import { useCallback, useEffect, useMemo, useReducer } from "react";
-import { ActionKind, ActionProps, InitialStateProps, Props } from "./types";
+import {
+  ActionKind,
+  ActionProps,
+  InitialStateProps,
+  Props,
+  UseGalleryProps,
+} from "./types";
 
 const initialState: InitialStateProps = {
   startIn: 0,
@@ -15,7 +21,7 @@ function reducer(state: InitialStateProps, action: ActionProps) {
   return state;
 }
 
-export const useGallery = ({ dataSource, startIn }: Props) => {
+export const useGallery = ({ dataSource, startIn }: Props): UseGalleryProps => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleChange = useCallback((startIn: number) => {
