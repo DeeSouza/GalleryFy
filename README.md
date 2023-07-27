@@ -53,11 +53,11 @@ function handleOpen(index: number) {
     handleClose={() => setOpen(false)}
 />
 
-<Container>
+<div>
     {images.map((image, index) => (
         <div key={image} onClick={() => handleOpen(index)}>
             <img src={image} />
         </div>
     ))}
-</Container>
+</div>
 ``````

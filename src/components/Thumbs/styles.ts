@@ -7,15 +7,23 @@ interface ThumbImageProps {
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 5px;
+  overflow-x: auto;
   background-color: #393939;
   width: 100%;
   height: 80px;
+  box-sizing: border-box;
+  padding: 0 10px;
   position: relative;
   z-index: 1;
+
+  &::-webkit-scrollbar {
+    height: 0px;
+  }
 `;
 
 export const ThumbImage = styled.div<ThumbImageProps>`
