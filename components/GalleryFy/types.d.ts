@@ -1,7 +1,7 @@
 export interface GalleryFyProps {
-    images: string[];
+    dataSource: string[];
     open?: boolean;
-    selectedImage?: number;
+    startIn?: number;
     showThumbs?: boolean;
     handleClose(): void;
 }

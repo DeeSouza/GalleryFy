@@ -1,12 +1,5 @@
 /// <reference types="react" />
 /// <reference types="react" />
-interface WrapperContainerProps {
-    $open: boolean;
-}
-interface ImageContainerProps {
-    $loaded: boolean;
-}
-export declare const WrapperContainer: import("styled-components").IStyledComponent<"web", import("styled-components/dist/types").Substitute<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, WrapperContainerProps>>;
 export declare const Container: import("styled-components").IStyledComponent<"web", {
     ref?: import("react").LegacyRef<HTMLDivElement> | undefined;
     key?: import("react").Key | null | undefined;
@@ -279,5 +272,3 @@ export declare const Container: import("styled-components").IStyledComponent<"we
     onTransitionEnd?: import("react").TransitionEventHandler<HTMLDivElement> | undefined;
     onTransitionEndCapture?: import("react").TransitionEventHandler<HTMLDivElement> | undefined;
 }>;
-export declare const ImageContainer: import("styled-components").IStyledComponent<"web", import("styled-components/dist/types").Substitute<import("react").DetailedHTMLProps<import("react").ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>, ImageContainerProps>>;
-export {};
