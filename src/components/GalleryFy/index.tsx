@@ -1,18 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 
-import { formatDataSource } from "@utils/gallery";
-
 import { Navigation } from "@components/Navigation";
 import { ControlBar } from "@components/ControlBar";
 import { Draggable } from "@components/Draggable";
 import { Thumbs } from "@components/Thumbs";
+import { Loading } from "@components/Loading";
 
 import { useGallery } from "@hooks/useGallery";
 import { useControl } from "@hooks/useControl";
 
 import { WrapperContainer, Container, ImageContainer } from "./styles";
 import { GalleryFyProps } from "./types";
-import { Loading } from "@components/Loading";
 
 /**
  *
@@ -35,7 +33,6 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
   const wrapperImage = useRef<HTMLDivElement | null>(null);
   const wrapperContainer = useRef<HTMLDivElement | null>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
-  const formattedDataSource = formatDataSource(dataSource);
 
   const {
     isFirstIndex,
@@ -46,7 +43,7 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
     current,
     amountData,
   } = useGallery({
-    dataSource: formattedDataSource,
+    dataSource,
     startIn,
   });
 
@@ -77,16 +74,16 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
       <Container ref={wrapperContainer}>
         {!loaded && <Loading />}
 
-        {formattedDataSource[current].iframe ? (
+        {dataSource[current].type === "pdf" ? (
           <iframe
-            src={formattedDataSource[current].src}
+            src={dataSource[current].src}
             onLoad={() => setLoaded(true)}
           />
         ) : (
           <Draggable>
             <div ref={wrapperImage}>
               <ImageContainer
-                src={formattedDataSource[current].src}
+                src={dataSource[current].src}
                 ref={imageRef}
                 draggable="false"
                 onLoad={() => setLoaded(true)}
@@ -104,7 +101,7 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
 
       {showThumbs && (
         <Thumbs
-          dataSource={formattedDataSource}
+          dataSource={dataSource}
           handleChange={handleChange}
           currentImage={current}
         />

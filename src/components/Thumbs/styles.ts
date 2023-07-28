@@ -4,7 +4,7 @@ import coverPdf from "@assets/pdf.png";
 
 interface ThumbImageProps {
   $cover: string;
-  $ext: string;
+  $type: string;
   $actived: boolean;
 }
 
@@ -42,8 +42,8 @@ export const ThumbImage = styled.div<ThumbImageProps>`
   opacity: ${({ $actived }) => ($actived ? 0.5 : 1)};
   transition: all 0.25s ease-in-out;
 
-  ${({ $ext, $cover }) =>
-    $ext === "pdf"
+  ${({ $type, $cover }) =>
+    $type === "pdf"
       ? css`
           background-image: url(${coverPdf});
           background-color: #fff;

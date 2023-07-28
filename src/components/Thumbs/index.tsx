@@ -57,7 +57,7 @@ export const Thumbs: React.FunctionComponent<ThumbsProps> = ({
           <ThumbImage
             onClick={() => handleChange(index)}
             $cover={file.src}
-            $ext={file.ext}
+            $type={file.type}
             $actived={index === currentImage}
           />
         ))

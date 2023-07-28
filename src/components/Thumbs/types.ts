@@ -1,8 +1,4 @@
-export interface DataSource {
-  src: string;
-  ext: string;
-  iframe: boolean;
-}
+import { DataSource } from "@components/GalleryFy/types";
 
 export interface ThumbsProps {
   dataSource: DataSource[];
