@@ -9,7 +9,12 @@ import { Loading } from "@components/Loading";
 import { useGallery } from "@hooks/useGallery";
 import { useControl } from "@hooks/useControl";
 
-import { WrapperContainer, Container, ImageContainer } from "./styles";
+import {
+  WrapperContainer,
+  Container,
+  ImageContainer,
+  IframeContainer,
+} from "./styles";
 import { GalleryFyProps } from "./types";
 
 /**
@@ -57,16 +62,34 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
     handleReset();
   }
 
+  function handleMiddlewareChange(index: number) {
+    if (index === current) return;
+
+    setLoaded(false);
+    handleChange(index);
+  }
+
+  function handleMiddlewareNavigation(side: "prev" | "next") {
+    setLoaded(true);
+    handleReset();
+
+    if (side === "prev") {
+      handleChangePrev();
+    } else {
+      handleChangeNext();
+    }
+  }
+
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "auto";
   }, [open]);
 
-  if (!dataSource.length) {
+  if (!dataSource.length || !open) {
     return;
   }
 
   return (
-    <WrapperContainer $open={open}>
+    <WrapperContainer>
       <ControlBar
         amount={amountData}
         current={current}
@@ -79,8 +102,9 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
         {!loaded && <Loading />}
 
         {dataSource[current].type === "pdf" ? (
-          <iframe
+          <IframeContainer
             src={dataSource[current].src}
+            $loaded={loaded}
             onLoad={() => setLoaded(true)}
           />
         ) : (
@@ -98,15 +122,19 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
         )}
 
         <Navigation.Root>
-          {!isFirstIndex && <Navigation.Left handle={handleChangePrev} />}
-          {!isLastIndex && <Navigation.Right handle={handleChangeNext} />}
+          {!isFirstIndex && (
+            <Navigation.Left handle={handleMiddlewareNavigation} />
+          )}
+          {!isLastIndex && (
+            <Navigation.Right handle={handleMiddlewareNavigation} />
+          )}
         </Navigation.Root>
       </Container>
 
       {showThumbs && (
         <Thumbs
           dataSource={dataSource}
-          handleChange={handleChange}
+          handleChange={handleMiddlewareChange}
           currentImage={current}
         />
       )}

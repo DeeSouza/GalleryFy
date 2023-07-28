@@ -7,7 +7,7 @@ export const NavigationRight: React.FunctionComponent<NavigationArrowProps> = ({
   handle,
 }: NavigationArrowProps) => {
   return (
-    <NavRight onClick={handle}>
+    <NavRight onClick={() => handle("next")}>
       <ArrowRight size={20} color="#FFF" />
     </NavRight>
   );

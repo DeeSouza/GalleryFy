@@ -3,5 +3,5 @@ export interface NavigationProps {
 }
 
 export interface NavigationArrowProps {
-  handle(): void;
+  handle(side: "prev" | "next"): void;
 }

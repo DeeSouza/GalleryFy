@@ -29,6 +29,10 @@ export default function Home() {
       src: image3,
       type: "image",
     },
+    {
+      src: "https://s29.q4cdn.com/175625835/files/doc_downloads/test.pdf",
+      type: "pdf",
+    },
   ];
 
   return (

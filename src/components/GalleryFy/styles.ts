@@ -1,19 +1,15 @@
 import styled from "styled-components";
 
-interface WrapperContainerProps {
-  $open: boolean;
-}
-
-interface ImageContainerProps {
+interface Props {
   $loaded: boolean;
 }
 
-export const WrapperContainer = styled.div<WrapperContainerProps>`
+export const WrapperContainer = styled.div`
   height: 100vh;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
 
-  display: ${({ $open }) => ($open ? "flex" : "none")};
+  display: flex;
   flex: 1;
   justify-content: center;
   align-items: center;
@@ -34,23 +30,21 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  > iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-
   > div:first-child {
     max-width: 1280px;
-
-    > img {
-      vertical-align: middle;
-      transform: scale(1);
-      user-select: none;
-    }
   }
 `;
 
-export const ImageContainer = styled.img<ImageContainerProps>`
+export const IframeContainer = styled.iframe<Props>`
   display: ${({ $loaded }) => ($loaded ? "block" : "none")};
+  width: 100%;
+  height: 100%;
+  border: none;
+`;
+
+export const ImageContainer = styled.img<Props>`
+  display: ${({ $loaded }) => ($loaded ? "block" : "none")};
+  vertical-align: middle;
+  transform: scale(1);
+  user-select: none;
 `;

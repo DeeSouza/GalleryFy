@@ -40,10 +40,7 @@ export const useControl = (
     const imageElement = currentElement.firstChild as HTMLImageElement;
 
     currentElement.style.transform = "rotate(0deg)";
-    currentElement.style.maxWidth = "1280px";
-
     imageElement.style.transform = "scale(1)";
-    imageElement.style.width = "auto";
 
     if (!parentElement) return;
 

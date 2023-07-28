@@ -7,7 +7,7 @@ export const NavigationLeft: React.FunctionComponent<NavigationArrowProps> = ({
   handle,
 }: NavigationArrowProps) => {
   return (
-    <NavLeft onClick={handle}>
+    <NavLeft onClick={() => handle("prev")}>
       <ArrowLeft size={20} color="#FFF" />
     </NavLeft>
   );
