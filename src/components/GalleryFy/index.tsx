@@ -61,6 +61,10 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
     document.body.style.overflow = open ? "hidden" : "auto";
   }, [open]);
 
+  if (!dataSource.length) {
+    return;
+  }
+
   return (
     <WrapperContainer $open={open}>
       <ControlBar
