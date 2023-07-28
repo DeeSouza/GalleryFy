@@ -1,5 +1,9 @@
+export interface DataSource {
+    src: string;
+    type: string;
+}
 export interface GalleryFyProps {
-    dataSource: string[];
+    dataSource: DataSource[];
     open?: boolean;
     startIn?: number;
     showThumbs?: boolean;
