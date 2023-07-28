@@ -6,7 +6,11 @@ import image1 from "@assets/image-example-1.png";
 import image2 from "@assets/image-example-2.png";
 import image3 from "@assets/image-example-3.png";
 
-const dataSource = [image1, image2, image3];
+const dataSource = [
+  { src: image1, type: "image" },
+  { src: image2, type: "image" },
+  { src: image3, type: "image" },
+];
 
 const MetaComponent: Meta<GalleryFyProps> = {
   title: "Components/GalleryFy",
