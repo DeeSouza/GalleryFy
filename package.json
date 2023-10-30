@@ -6,7 +6,7 @@
     "name": "Diego Souza",
     "url": "https://github.com/deesouza"
   },
-  "version": "1.0.35",
+  "version": "1.0.29",
   "type": "module",
   "publishConfig": {
     "registry": "https://npmjs.com/package/@deesouza/galleryfy"
