@@ -9,4 +9,5 @@ export interface GalleryFyProps {
   startIn?: number;
   showThumbs?: boolean;
   handleClose(): void;
+  positionPlacement?: "top" | "bottom";
 }

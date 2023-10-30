@@ -42,6 +42,7 @@ export default function Home() {
         dataSource={dataSource}
         startIn={openInImage}
         handleClose={() => setOpen(false)}
+        positionPlacement="bottom"
       />
 
       <Container>

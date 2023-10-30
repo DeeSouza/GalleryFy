@@ -33,6 +33,7 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
   open = false,
   showThumbs = true,
   handleClose = () => {},
+  positionPlacement = 'top'
 }: GalleryFyProps) => {
   const [loaded, setLoaded] = useState<boolean>(false);
   const wrapperImage = useRef<HTMLDivElement | null>(null);
@@ -96,6 +97,7 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
         handleClose={handleCloseGallery}
         handleZoom={handleZoom}
         handleRotate={(direction) => handleRotate(direction)}
+        positionPlacement={positionPlacement}
       />
 
       <Container ref={wrapperContainer}>

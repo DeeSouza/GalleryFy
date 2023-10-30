@@ -1,18 +1,38 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const Container = styled.div`
-  position: relative;
+interface ContainerProps {
+  positionPlacement?: "top" | "bottom";
+}
+
+export const Container = styled.div<ContainerProps>`
   background-color: rgba(57, 57, 57, 0.6);
   color: #fff;
   width: 100%;
   height: 50px;
   padding: 0 10px;
   box-sizing: border-box;
-  z-index: 1;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  ${({ positionPlacement }) =>
+    positionPlacement === "bottom"
+      ? css`
+          position: absolute;
+          left: 0;
+          bottom: 70px;
+          justify-content: center;
+
+          > div:first-of-type {
+            display: none;
+          }
+        `
+      : css`
+          position: relative;
+        `}
+
+  z-index: 1;
 `;
 
 export const Buttons = styled.div`

@@ -18,9 +18,10 @@ export const ControlBar: React.FunctionComponent<ControlBarProps> = ({
   handleClose,
   handleRotate,
   handleZoom,
+  positionPlacement,
 }: ControlBarProps) => {
   return (
-    <Container>
+    <Container positionPlacement={positionPlacement}>
       <div>
         {current + 1} de {amount}
       </div>
