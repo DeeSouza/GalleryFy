@@ -5,4 +5,5 @@ export interface ControlBarProps {
     handleClose(): void;
     handleRotate(direction: Direction): void;
     handleZoom(type: ZoomKind): void;
+    positionPlacement?: "top" | "bottom";
 }
