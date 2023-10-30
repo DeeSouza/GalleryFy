@@ -9,7 +9,7 @@
   "version": "1.0.39",
   "type": "module",
   "publishConfig": {
-    "registry": "https://registry.npmjs.com/package/@deesouza/galleryfy"
+    "registry": "https://registry.npmjs.com/@deesouza/galleryfy"
   },
   "scripts": {
     "dev": "vite",
