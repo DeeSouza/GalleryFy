@@ -1,10 +1,6 @@
 /// <reference types="react" />
 /// <reference types="react" />
-interface ContainerProps {
-    readonly $positionPlacement?: "top" | "bottom";
-}
-export declare const Container: import("styled-components").IStyledComponent<"web", import("styled-components/dist/types").Substitute<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, ContainerProps>>;
-export declare const Buttons: import("styled-components").IStyledComponent<"web", {
+export declare const Container: import("styled-components").IStyledComponent<"web", {
     ref?: import("react").LegacyRef<HTMLDivElement> | undefined;
     key?: import("react").Key | null | undefined;
     defaultChecked?: boolean | undefined;
@@ -276,4 +272,3 @@ export declare const Buttons: import("styled-components").IStyledComponent<"web"
     onTransitionEnd?: import("react").TransitionEventHandler<HTMLDivElement> | undefined;
     onTransitionEndCapture?: import("react").TransitionEventHandler<HTMLDivElement> | undefined;
 }>;
-export {};

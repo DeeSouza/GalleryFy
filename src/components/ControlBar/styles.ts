@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 interface ContainerProps {
-  positionPlacement?: "top" | "bottom";
+  readonly $positionPlacement?: "top" | "bottom";
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -16,8 +16,8 @@ export const Container = styled.div<ContainerProps>`
   align-items: center;
   justify-content: space-between;
 
-  ${({ positionPlacement }) =>
-    positionPlacement === "bottom"
+  ${({ $positionPlacement }) =>
+    $positionPlacement === "bottom"
       ? css`
           position: absolute;
           left: 0;

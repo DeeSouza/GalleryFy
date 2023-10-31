@@ -21,7 +21,7 @@ export const ControlBar: React.FunctionComponent<ControlBarProps> = ({
   positionPlacement,
 }: ControlBarProps) => {
   return (
-    <Container positionPlacement={positionPlacement}>
+    <Container $positionPlacement={positionPlacement}>
       <div>
         {current + 1} de {amount}
       </div>

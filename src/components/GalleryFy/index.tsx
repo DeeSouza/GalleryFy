@@ -5,6 +5,7 @@ import { ControlBar } from "@components/ControlBar";
 import { Draggable } from "@components/Draggable";
 import { Thumbs } from "@components/Thumbs";
 import { Loading } from "@components/Loading";
+import { ButtonClose } from "@components/ButtonClose";
 
 import { useGallery } from "@hooks/useGallery";
 import { useControl } from "@hooks/useControl";
@@ -100,6 +101,8 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
         handleRotate={(direction) => handleRotate(direction)}
         positionPlacement={positionPlacement}
       />
+
+      <ButtonClose handleClose={handleCloseGallery} />
 
       <Container ref={wrapperContainer}>
         {!loaded && <Loading />}
