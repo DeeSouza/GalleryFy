@@ -24,6 +24,7 @@ import { GalleryFyProps } from "./types";
  * @param open control open/close gallery
  * @param handleClose function to close gallery
  * @param showThumbs show thumbs in the gallery
+ * @param positionPlacement position of the control buttons
  * @returns
  */
 
@@ -33,7 +34,7 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
   open = false,
   showThumbs = true,
   handleClose = () => {},
-  positionPlacement = 'top'
+  positionPlacement = "top",
 }: GalleryFyProps) => {
   const [loaded, setLoaded] = useState<boolean>(false);
   const wrapperImage = useRef<HTMLDivElement | null>(null);
