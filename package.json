@@ -6,7 +6,7 @@
     "name": "Diego Souza",
     "url": "https://github.com/deesouza"
   },
-  "version": "1.0.42",
+  "version": "1.0.43",
   "type": "module",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
