@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { MouseEvent, useEffect, useRef, useState } from "react";
 
 import { Navigation } from "@components/Navigation";
 import { ControlBar } from "@components/ControlBar";
@@ -65,6 +65,18 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
     handleReset();
   }
 
+  function handleCloseOverlay(event: MouseEvent<HTMLDivElement>) {
+    const targetElement = event.target as HTMLElement;
+    if (!imageRef.current) {
+      return;
+    }
+
+    if (targetElement !== imageRef.current) {
+      handleClose();
+      handleReset();
+    }
+  }
+
   function handleMiddlewareChange(index: number) {
     if (index === current) return;
 
@@ -104,7 +116,7 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
 
       <ButtonClose handleClose={handleCloseGallery} />
 
-      <Container ref={wrapperContainer}>
+      <Container ref={wrapperContainer} onClick={handleCloseOverlay}>
         {!loaded && <Loading />}
 
         {dataSource[current].type === "pdf" ? (
@@ -126,16 +138,16 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
             </div>
           </Draggable>
         )}
-
-        <Navigation.Root>
-          {!isFirstIndex && (
-            <Navigation.Left handle={handleMiddlewareNavigation} />
-          )}
-          {!isLastIndex && (
-            <Navigation.Right handle={handleMiddlewareNavigation} />
-          )}
-        </Navigation.Root>
       </Container>
+
+      <Navigation.Root>
+        {!isFirstIndex && (
+          <Navigation.Left handle={handleMiddlewareNavigation} />
+        )}
+        {!isLastIndex && (
+          <Navigation.Right handle={handleMiddlewareNavigation} />
+        )}
+      </Navigation.Root>
 
       {showThumbs && (
         <Thumbs

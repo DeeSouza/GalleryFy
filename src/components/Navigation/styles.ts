@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 export const ContainerNavigation = styled.div`
   position: absolute;
   width: 100%;
-
+  top: 50%;
   svg {
     vertical-align: middle;
   }
@@ -17,6 +17,7 @@ const NavStyles = css`
   border-radius: 5px;
   opacity: 0.6;
   transition: all 0.25s ease-in;
+  transform: translateY(-50%);
 
   &:hover {
     opacity: 1;

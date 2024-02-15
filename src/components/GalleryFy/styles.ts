@@ -29,10 +29,6 @@ export const Container = styled.div`
   flex: 1;
   align-items: center;
   justify-content: center;
-
-  > div:first-child {
-    max-width: 1280px;
-  }
 `;
 
 export const IframeContainer = styled.iframe<Props>`
