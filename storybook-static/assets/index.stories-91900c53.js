@@ -151,6 +151,11 @@ import{r as p,R as n}from"./index-76fb7be0.js";import"./_commonjsHelpers-de833af
       transform: rotate(360deg);
     }
 `,uo=R.div`
+  position: absolute;
+  margin: auto;
+  width: 48px;
+  height: 48px;
+
   svg {
     animation: ${co} 1s linear infinite;
   }
@@ -210,4 +215,4 @@ import{r as p,R as n}from"./index-76fb7be0.js";import"./_commonjsHelpers-de833af
   transform: scale(1);
   user-select: none;
 `,ht=({dataSource:e=[],startIn:t,open:r=!1,showThumbs:o=!0,handleClose:i=()=>{},positionPlacement:s="top"})=>{const[a,l]=p.useState(!1),c=p.useRef(null),d=p.useRef(null),u=p.useRef(null),{isFirstIndex:f,isLastIndex:x,handleChange:k,handleChangeNext:E,handleChangePrev:j,current:C,amountData:w}=ko({dataSource:e,startIn:t}),{handleRotate:g,handleZoom:b,handleReset:S}=go(c,d);function v(){i(),S()}function W(_){const Ge=_.target;u.current&&Ge!==u.current&&(i(),S())}function y(_){_!==C&&(l(!1),k(_))}function Q(_){l(!0),S(),_==="prev"?j():E()}if(p.useEffect(()=>{document.body.style.overflow=r?"hidden":"auto"},[r]),!(!e.length||!r))return m.jsxs(yo,{children:[m.jsx(ut,{amount:w,current:C,handleClose:v,handleZoom:b,handleRotate:_=>g(_),positionPlacement:s}),m.jsx(ft,{handleClose:v}),m.jsxs(xo,{ref:d,onClick:W,children:[!a&&m.jsx(po,{}),e[C].type==="pdf"?m.jsx(Lo,{src:e[C].src,$loaded:a,onLoad:()=>l(!0)}):m.jsx(dt,{children:m.jsx("div",{ref:c,children:m.jsx(Eo,{src:e[C].src,ref:u,draggable:"false",onLoad:()=>l(!0),$loaded:a})})})]}),m.jsxs(Ke.Root,{children:[!f&&m.jsx(Ke.Left,{handle:Q}),!x&&m.jsx(Ke.Right,{handle:Q})]}),o&&m.jsx(pt,{dataSource:e,handleChange:y,currentImage:C})]})};try{ht.displayName="GalleryFy",ht.__docgenInfo={description:"",displayName:"GalleryFy",props:{dataSource:{defaultValue:{value:"[]"},description:"",name:"dataSource",required:!1,type:{name:"DataSource[]"}},open:{defaultValue:{value:"false"},description:"",name:"open",required:!1,type:{name:"boolean"}},startIn:{defaultValue:null,description:"",name:"startIn",required:!1,type:{name:"number"}},showThumbs:{defaultValue:{value:"true"},description:"",name:"showThumbs",required:!1,type:{name:"boolean"}},handleClose:{defaultValue:{value:"() => {}"},description:"",name:"handleClose",required:!1,type:{name:"() => void"}},positionPlacement:{defaultValue:{value:"top"},description:"",name:"positionPlacement",required:!1,type:{name:"enum",value:[{value:'"top"'},{value:'"bottom"'}]}}}}}catch{}const vo=""+new URL("image-example-1-3a6e165d.png",import.meta.url).href,bo=""+new URL("image-example-2-e2a1b822.png",import.meta.url).href,Ao=""+new URL("image-example-3-ae7d93a8.png",import.meta.url).href,Ot=[{src:vo,type:"image"},{src:bo,type:"image"},{src:Ao,type:"image"}],Co={title:"Components/GalleryFy",component:ht,tags:["autodocs"],parameters:{docs:{story:{inline:!1,iframeHeight:700}}},args:{open:!0,dataSource:Ot},argTypes:{startIn:{control:"select",options:Object.keys(Ot)},handleClose:{docs:{disable:!1},table:{disable:!0}}}},Se={};var $t,Dt,Bt;Se.parameters={...Se.parameters,docs:{...($t=Se.parameters)==null?void 0:$t.docs,source:{originalSource:"{}",...(Bt=(Dt=Se.parameters)==null?void 0:Dt.docs)==null?void 0:Bt.source}}};const Wo=["Default"];export{Se as Default,Wo as __namedExportsOrder,Co as default};
-//# sourceMappingURL=index.stories-1f73a8dd.js.map
+//# sourceMappingURL=index.stories-91900c53.js.map
