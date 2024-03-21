@@ -1,4 +1,10 @@
-import React, { MouseEvent, useEffect, useRef, useState } from "react";
+import React, {
+  MouseEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import { Navigation } from "@components/Navigation";
 import { ControlBar } from "@components/ControlBar";
@@ -16,7 +22,7 @@ import {
   ImageContainer,
   IframeContainer,
 } from "./styles";
-import { GalleryFyProps } from "./types";
+import { GalleryFyProps, KeyHandlers } from "./types";
 
 /**
  *
@@ -50,6 +56,7 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
     handleChangePrev,
     current,
     amountData,
+    dataGallery,
   } = useGallery({
     dataSource,
     startIn,
@@ -60,10 +67,10 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
     wrapperContainer
   );
 
-  function handleCloseGallery() {
+  const handleCloseGallery = useCallback(() => {
     handleClose();
     handleReset();
-  }
+  }, [handleClose, handleReset]);
 
   function handleCloseOverlay(event: MouseEvent<HTMLDivElement>) {
     const targetElement = event.target as HTMLElement;
@@ -84,20 +91,45 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
     handleChange(index);
   }
 
-  function handleMiddlewareNavigation(side: "prev" | "next") {
-    setLoaded(true);
-    handleReset();
+  const handleMiddlewareNavigation = useCallback(
+    (side: "prev" | "next") => {
+      setLoaded(true);
+      handleReset();
 
-    if (side === "prev") {
-      handleChangePrev();
-    } else {
-      handleChangeNext();
-    }
-  }
+      if (side === "prev") {
+        handleChangePrev();
+      } else {
+        handleChangeNext();
+      }
+    },
+    [handleReset, handleChangePrev, handleChangeNext]
+  );
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "auto";
   }, [open]);
+
+  useEffect(() => {
+    const keyHandlers: KeyHandlers = {
+      ArrowLeft: () => handleMiddlewareNavigation("prev"),
+      ArrowRight: () => handleMiddlewareNavigation("next"),
+      Escape: handleCloseGallery,
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const keyHandler = keyHandlers[event.key];
+
+      if (keyHandler) {
+        keyHandler();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleMiddlewareNavigation, handleCloseGallery]);
 
   if (!dataSource.length || !open) {
     return;
@@ -119,9 +151,9 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
       <Container ref={wrapperContainer} onClick={handleCloseOverlay}>
         {!loaded && <Loading />}
 
-        {dataSource[current].type === "pdf" ? (
+        {dataGallery[current].type === "pdf" ? (
           <IframeContainer
-            src={dataSource[current].src}
+            src={dataGallery[current].src}
             $loaded={loaded}
             onLoad={() => setLoaded(true)}
           />
@@ -129,7 +161,7 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
           <Draggable>
             <div ref={wrapperImage}>
               <ImageContainer
-                src={dataSource[current].src}
+                src={dataGallery[current].src}
                 ref={imageRef}
                 draggable="false"
                 onLoad={() => setLoaded(true)}
@@ -144,6 +176,7 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
         {!isFirstIndex && (
           <Navigation.Left handle={handleMiddlewareNavigation} />
         )}
+
         {!isLastIndex && (
           <Navigation.Right handle={handleMiddlewareNavigation} />
         )}
@@ -151,7 +184,7 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
 
       {showThumbs && (
         <Thumbs
-          dataSource={dataSource}
+          dataSource={dataGallery}
           handleChange={handleMiddlewareChange}
           currentImage={current}
         />

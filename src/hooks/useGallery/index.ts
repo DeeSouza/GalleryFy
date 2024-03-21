@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useReducer } from "react";
+import { formatDataSource } from "@utils/globals";
 import {
   ActionKind,
   ActionProps,
@@ -23,6 +24,7 @@ function reducer(state: InitialStateProps, action: ActionProps) {
 
 export const useGallery = ({ dataSource, startIn }: Props): UseGalleryProps => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const formattedDataSource = formatDataSource(dataSource);
 
   const handleChange = useCallback((startIn: number) => {
     dispatch({
@@ -31,19 +33,31 @@ export const useGallery = ({ dataSource, startIn }: Props): UseGalleryProps => {
     });
   }, []);
 
-  function handleChangeNext() {
+  const handleChangeNext = useCallback(() => {
+    const goToIndex = state.startIn + 1;
+
+    if (goToIndex === dataSource.length) {
+      return;
+    }
+
     dispatch({
       type: ActionKind.CHANGE,
       startIn: state.startIn + 1,
     });
-  }
+  }, [state.startIn, dataSource.length]);
 
-  function handleChangePrev() {
+  const handleChangePrev = useCallback(() => {
+    const goToIndex = state.startIn - 1;
+
+    if (goToIndex === -1) {
+      return;
+    }
+
     dispatch({
       type: ActionKind.CHANGE,
       startIn: state.startIn - 1,
     });
-  }
+  }, [state.startIn]);
 
   const isFirstIndex = useMemo(() => {
     return state.startIn === 0;
@@ -69,5 +83,6 @@ export const useGallery = ({ dataSource, startIn }: Props): UseGalleryProps => {
     handleChangePrev,
     current: state.startIn,
     amountData: dataSource.length,
+    dataGallery: formattedDataSource,
   };
 };

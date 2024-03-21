@@ -1,4 +1,3 @@
-import { DataSource } from '../../components/GalleryFy/types';
 export interface UseGalleryProps {
     isFirstIndex: boolean;
     isLastIndex: boolean;
@@ -7,12 +6,16 @@ export interface UseGalleryProps {
     handleChangePrev(): void;
     current: number;
     amountData: number;
+    dataGallery: {
+        type: string;
+        src: string;
+    }[];
 }
 export declare enum ActionKind {
     CHANGE = "CHANGE"
 }
 export interface Props {
-    dataSource: DataSource[];
+    dataSource: string[];
     startIn?: number;
 }
 export interface InitialStateProps {
