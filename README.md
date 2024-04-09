@@ -20,22 +20,10 @@ npm i @deesouza/galleryfy
 ```jsx
 export default function Home() {
   const dataSource = [
-    {
-      src: 'https://cdn.images.com/image-1.png',
-      type: 'image'
-    },
-    {
-      src: 'https://cdn.images.com/image-2.png',
-      type: 'image'
-    },
-    {
-      src: 'https://cdn.images.com/image-3.png',
-      type: 'image'
-    },
-    {
-      src: 'https://s29.q4cdn.com/175625835/files/doc_downloads/test.pdf',
-      type: 'pdf'
-    }
+    'https://cdn.images.com/image-1.png',
+    'https://cdn.images.com/image-2.png',
+    'https://cdn.images.com/image-3.png',
+    'https://s29.q4cdn.com/175625835/files/doc_downloads/test.pdf'
   ];
 
   const [openIn, setOpenIn] = useState(0);
@@ -57,8 +45,8 @@ export default function Home() {
 
       <div>
         {dataSource.map((item, index) => (
-          <div key={item.src} onClick={() => handleOpen(index)}>
-            <span>{item.src}</span>
+          <div key={item} onClick={() => handleOpen(index)}>
+            <span>{item}</span>
           </div>
         ))}
       </div>
@@ -73,8 +61,7 @@ You can also use images from assets.
 import image1 from '@assets/images/image-1.jpg';
 
 const images = [
-    src: image1,
-    type: 'image'
+    image1
 ];
 ```
 
@@ -90,7 +77,7 @@ const images = [
 
 ## Contributing
 
-Contributions, issues and feature requests are welcome. Feel free to check [issues page](https://github.com/kefranabg/readme-md-generator/issues).
+Contributions, issues and feature requests are welcome. Feel free to check [issues page](https://github.com/deesouza/galleryfy/issues).
 
 ## License
 
