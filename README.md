@@ -6,8 +6,8 @@ GalleryFy is a simple React library to show images and PDF files in the gallery.
 
 ## Prerequisites
 
-* Node v14+
-* NPM v6+
+- Node v18+
+- NPM v10+
 
 ## Install
 
@@ -20,10 +20,14 @@ npm i @deesouza/galleryfy
 ```jsx
 export default function Home() {
   const dataSource = [
-    'https://cdn.images.com/image-1.png',
-    'https://cdn.images.com/image-2.png',
-    'https://cdn.images.com/image-3.png',
-    'https://s29.q4cdn.com/175625835/files/doc_downloads/test.pdf'
+    {
+      src: "https://cdn.images.com/image-1.png",
+      title: "Image",
+    },
+    {
+      src: "https://s29.q4cdn.com/175625835/files/doc_downloads/test.pdf",
+      title: "File PDF",
+    },
   ];
 
   const [openIn, setOpenIn] = useState(0);
@@ -45,8 +49,8 @@ export default function Home() {
 
       <div>
         {dataSource.map((item, index) => (
-          <div key={item} onClick={() => handleOpen(index)}>
-            <span>{item}</span>
+          <div key={item.src} onClick={() => handleOpen(index)}>
+            <span>{item.src}</span>
           </div>
         ))}
       </div>
@@ -58,11 +62,9 @@ export default function Home() {
 You can also use images from assets.
 
 ```js
-import image1 from '@assets/images/image-1.jpg';
+import image1 from "@assets/images/image-1.jpg";
 
-const images = [
-    image1
-];
+const images = [{ src: image1 }];
 ```
 
 ## Features
