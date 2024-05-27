@@ -17,10 +17,11 @@ const NavStyles = css`
   border-radius: 5px;
   opacity: 0.6;
   transition: all 0.25s ease-in;
-  transform: translateY(-50%);
+  transform: translateY(-50%) scale(1);
 
   &:hover {
     opacity: 1;
+    transform: translateY(-50%) scale(1.15);
   }
 `;
 

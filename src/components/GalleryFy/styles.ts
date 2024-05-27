@@ -38,6 +38,20 @@ export const IframeContainer = styled.iframe<Props>`
   border: none;
 `;
 
+export const TitleFile = styled.span`
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 62px;
+  background-color: #0b1215;
+  color: #f5f5f5;
+  border-radius: 10px;
+  padding: 6px 15px;
+  display: inline-table;
+  font-weight: bold;
+`;
+
 export const ImageContainer = styled.img<Props>`
   display: ${({ $loaded }) => ($loaded ? "block" : "none")};
   vertical-align: middle;

@@ -50,9 +50,11 @@ export const Buttons = styled.div`
     cursor: pointer;
     opacity: 0.5;
     transition: all 0.25s ease-in;
+    transform: scale(1);
 
     &:hover {
       opacity: 1;
+      transform: scale(1.15);
     }
   }
 `;

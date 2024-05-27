@@ -17,10 +17,13 @@ export default function Home() {
   }
 
   const dataSource = [
-    image1,
-    image2,
-    image3,
-    "https://s29.q4cdn.com/175625835/files/doc_downloads/test.pdf",
+    { src: image1, title: "Imagem 1" },
+    { src: image2, title: "Imagem 2" },
+    { src: image3, title: "Imagem 3" },
+    {
+      src: "https://s29.q4cdn.com/175625835/files/doc_downloads/test.pdf",
+      title: "Imagem CDN",
+    },
   ];
 
   return (
@@ -35,8 +38,8 @@ export default function Home() {
 
       <Container>
         {dataSource.map((item, index) => (
-          <div key={item} onClick={() => handleOpen(index)}>
-            <span>{item}</span>
+          <div key={item.src} onClick={() => handleOpen(index)}>
+            <span>{item.title}</span>
           </div>
         ))}
       </Container>

@@ -1,3 +1,5 @@
+import { DataSource } from "@components/GalleryFy/types";
+
 function getExtensionFile(src: string) {
   const splittedLink = src.split("/");
   const filename = splittedLink[splittedLink.length - 1];
@@ -8,11 +10,11 @@ function getExtensionFile(src: string) {
   return extensionFile;
 }
 
-function formatDataSource(data: string[]) {
+function formatDataSource(data: DataSource[]) {
   return data.map((item) => {
     return {
-      src: item,
-      type: getExtensionFile(item),
+      ...item,
+      type: getExtensionFile(item.src),
     };
   });
 }

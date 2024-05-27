@@ -21,18 +21,30 @@ import {
   Container,
   ImageContainer,
   IframeContainer,
+  TitleFile,
 } from "./styles";
 import { GalleryFyProps, KeyHandlers } from "./types";
 
 /**
- *
- * @param dataSource array from URL's files or path assets files
- * @param startIn file index default
- * @param open control open/close gallery
- * @param handleClose function to close gallery
- * @param showThumbs show thumbs in the gallery
- * @param positionPlacement position of the control buttons
- * @returns
+ * @component
+ * @param {array} dataSource - from URL's files or path assets files
+ * @param {number} startIn - file index default
+ * @param {boolean} open - control open/close gallery
+ * @param {function} handleClose - to close gallery
+ * @param {boolean} showThumbs - show thumbs in the gallery
+ * @param {string} positionPlacement - position of the control buttons
+ * @param {boolean} showTitle - shown title from file
+ * @returns {JSX.Element} The rendered gallery component.
+ * 
+ * @example
+ * // Render a gallery
+ * <GalleryFy
+      open={open}
+      dataSource={dataSource}
+      startIn={openInImage}
+      handleClose={() => setOpen(false)}
+      positionPlacement="bottom"
+    />
  */
 
 const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
@@ -42,6 +54,7 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
   showThumbs = true,
   handleClose = () => {},
   positionPlacement = "top",
+  showTitle = true,
 }: GalleryFyProps) => {
   const [loaded, setLoaded] = useState<boolean>(false);
   const wrapperImage = useRef<HTMLDivElement | null>(null);
@@ -135,6 +148,12 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
     return;
   }
 
+  const fileCurrent = dataGallery[current];
+  const isFilePdf = fileCurrent.type === "pdf";
+  const fileTitle = fileCurrent.title;
+  const fileSrc = fileCurrent.src;
+  const isPositionTop = positionPlacement === "top";
+
   return (
     <WrapperContainer>
       <ControlBar
@@ -146,30 +165,38 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
         positionPlacement={positionPlacement}
       />
 
-      <ButtonClose handleClose={handleCloseGallery} />
+      {!isFilePdf && !isPositionTop && (
+        <ButtonClose handleClose={handleCloseGallery} />
+      )}
 
       <Container ref={wrapperContainer} onClick={handleCloseOverlay}>
         {!loaded && <Loading />}
 
-        {dataGallery[current].type === "pdf" ? (
+        {isFilePdf ? (
           <IframeContainer
-            src={dataGallery[current].src}
+            src={fileSrc}
             $loaded={loaded}
             onLoad={() => setLoaded(true)}
+            title={fileTitle}
+            allowTransparency
+            allowFullScreen
           />
         ) : (
           <Draggable>
             <div ref={wrapperImage}>
               <ImageContainer
-                src={dataGallery[current].src}
+                src={fileSrc}
                 ref={imageRef}
                 draggable="false"
                 onLoad={() => setLoaded(true)}
                 $loaded={loaded}
+                title={fileTitle}
               />
             </div>
           </Draggable>
         )}
+
+        {showTitle && fileTitle && <TitleFile>{fileTitle}</TitleFile>}
       </Container>
 
       <Navigation.Root>

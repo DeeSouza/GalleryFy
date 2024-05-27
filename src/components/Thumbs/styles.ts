@@ -17,7 +17,7 @@ export const Container = styled.div`
   align-items: center;
   gap: 5px;
   overflow-x: auto;
-  background-color: snow;
+  background-color: #f5f5f5;
   width: 100%;
   height: 70px;
   box-sizing: border-box;

@@ -1,6 +1,6 @@
-import { DataSource } from '../GalleryFy/types';
+import { Thumb } from '../GalleryFy/types';
 export interface ThumbsProps {
-    dataSource: DataSource[];
+    dataSource: Thumb[];
     handleChange(index: number): void;
     currentImage: number;
 }
