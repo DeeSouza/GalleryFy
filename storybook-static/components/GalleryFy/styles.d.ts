@@ -2,6 +2,7 @@
 /// <reference types="react" />
 interface Props {
     $loaded: boolean;
+    $fullWidth?: boolean;
 }
 export declare const WrapperContainer: import("styled-components").IStyledComponent<"web", {
     ref?: import("react").LegacyRef<HTMLDivElement> | undefined;

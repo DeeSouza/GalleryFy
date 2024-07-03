@@ -34,6 +34,7 @@ import { GalleryFyProps, KeyHandlers } from "./types";
  * @param {boolean} showThumbs - show thumbs in the gallery
  * @param {string} positionPlacement - position of the control buttons
  * @param {boolean} showTitle - shown title from file
+ * @param {boolean} fullWidth - full width iframe
  * @returns {JSX.Element} The rendered gallery component.
  * 
  * @example
@@ -55,11 +56,13 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
   handleClose = () => {},
   positionPlacement = "top",
   showTitle = true,
+  fullWidth = false,
 }: GalleryFyProps) => {
   const [loaded, setLoaded] = useState<boolean>(false);
   const wrapperImage = useRef<HTMLDivElement | null>(null);
   const wrapperContainer = useRef<HTMLDivElement | null>(null);
-  const imageRef = useRef<HTMLImageElement | null>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const {
     isFirstIndex,
@@ -87,11 +90,15 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
 
   function handleCloseOverlay(event: MouseEvent<HTMLDivElement>) {
     const targetElement = event.target as HTMLElement;
-    if (!imageRef.current) {
+
+    if (!imageRef.current && !iframeRef.current) {
       return;
     }
 
-    if (targetElement !== imageRef.current) {
+    const doesntClickElement =
+      targetElement !== imageRef.current || targetElement !== iframeRef.current;
+
+    if (doesntClickElement) {
       handleClose();
       handleReset();
     }
@@ -165,9 +172,7 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
         positionPlacement={positionPlacement}
       />
 
-      {!isFilePdf && !isPositionTop && (
-        <ButtonClose handleClose={handleCloseGallery} />
-      )}
+      {!isPositionTop && <ButtonClose handleClose={handleCloseGallery} />}
 
       <Container ref={wrapperContainer} onClick={handleCloseOverlay}>
         {!loaded && <Loading />}
@@ -175,11 +180,13 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
         {isFilePdf ? (
           <IframeContainer
             src={fileSrc}
-            $loaded={loaded}
-            onLoad={() => setLoaded(true)}
+            ref={iframeRef}
             title={fileTitle}
+            onLoad={() => setLoaded(true)}
             allowTransparency
             allowFullScreen
+            $loaded={loaded}
+            $fullWidth={fullWidth}
           />
         ) : (
           <Draggable>
@@ -189,8 +196,8 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
                 ref={imageRef}
                 draggable="false"
                 onLoad={() => setLoaded(true)}
-                $loaded={loaded}
                 title={fileTitle}
+                $loaded={loaded}
               />
             </div>
           </Draggable>

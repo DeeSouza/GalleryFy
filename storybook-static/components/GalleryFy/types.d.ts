@@ -16,6 +16,7 @@ export interface GalleryFyProps {
     handleClose(): void;
     positionPlacement?: "top" | "bottom";
     showTitle?: boolean;
+    fullWidth?: boolean;
 }
 export interface KeyHandlers {
     [key: string]: () => void;

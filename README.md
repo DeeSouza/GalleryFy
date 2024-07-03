@@ -67,6 +67,20 @@ import image1 from "@assets/images/image-1.jpg";
 const images = [{ src: image1 }];
 ```
 
+## API
+
+| Prop                | Value           | Default | Description                          |
+| :------------------ | :-------------- | :------ | :----------------------------------- |
+| `open`              | `boolean`       | `false` | Control open and close of gallery    |
+| `dataSource`        | `array`         |         | Data of gallery                      |
+| `startIn`           | `number`        |         | Index than start gallery             |
+| `handleClose`       | `function`      |         | Function execute to close gallery    |
+| `showThumbs`        | `boolean`       | `true`  | Show thumbnails                      |
+| `fullWidth`         | `boolean`       | `false` | iFrame PDF with full width in window |
+| `positionPlacement` | `top`, `bottom` | `top`   | Position of bar control              |
+| `showTitle`         | `boolean`       | `false` | Show title of image or PDF           |
+| ...                 | ...             |         | ...                                  |
+
 ## Features
 
 - Zoom

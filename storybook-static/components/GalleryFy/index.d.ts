@@ -9,6 +9,7 @@ import { GalleryFyProps } from "./types";
  * @param {boolean} showThumbs - show thumbs in the gallery
  * @param {string} positionPlacement - position of the control buttons
  * @param {boolean} showTitle - shown title from file
+ * @param {boolean} fullWidth - full width iframe
  * @returns {JSX.Element} The rendered gallery component.
  *
  * @example

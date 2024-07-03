@@ -11,28 +11,26 @@ export const Container = styled.div<ContainerProps>`
   height: 50px;
   padding: 0 10px;
   box-sizing: border-box;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
 
   ${({ $positionPlacement }) =>
-    $positionPlacement === "bottom"
-      ? css`
-          position: absolute;
-          left: 0;
-          bottom: 70px;
-          justify-content: center;
+    $positionPlacement === "bottom" &&
+    css`
+      position: absolute;
+      top: auto;
+      bottom: 70px;
+      justify-content: center;
 
-          > div:first-of-type {
-            display: none;
-          }
-        `
-      : css`
-          position: relative;
-        `}
-
-  z-index: 1;
+      > div:first-of-type {
+        display: none;
+      }
+    `}
 `;
 
 export const Buttons = styled.div`

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 interface Props {
   $loaded: boolean;
+  $fullWidth?: boolean;
 }
 
 export const WrapperContainer = styled.div`
@@ -33,7 +34,7 @@ export const Container = styled.div`
 
 export const IframeContainer = styled.iframe<Props>`
   display: ${({ $loaded }) => ($loaded ? "block" : "none")};
-  width: 100%;
+  width: ${({ $fullWidth }) => ($fullWidth ? "100%" : "70%")};
   height: 100%;
   border: none;
 `;

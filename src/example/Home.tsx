@@ -22,7 +22,7 @@ export default function Home() {
     { src: image3, title: "Imagem 3" },
     {
       src: "https://s29.q4cdn.com/175625835/files/doc_downloads/test.pdf",
-      title: "Imagem CDN",
+      title: "PDF",
     },
   ];
 
