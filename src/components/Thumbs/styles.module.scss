@@ -1,14 +1,4 @@
-import { css, styled } from "styled-components";
-
-import coverPdf from "@assets/pdf.png";
-
-interface ThumbImageProps {
-  $cover: string;
-  $type: string;
-  $actived: boolean;
-}
-
-export const Container = styled.div`
+.container {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -29,30 +19,27 @@ export const Container = styled.div`
   &::-webkit-scrollbar {
     height: 0px;
   }
-`;
+}
 
-export const ThumbImage = styled.div<ThumbImageProps>`
+.thumbImage {
   width: 60px;
   height: 60px;
   background-size: cover;
   background-position: center;
-  opacity: 1;
   border: 2px solid #000;
   cursor: pointer;
-  opacity: ${({ $actived }) => ($actived ? 0.5 : 1)};
+  opacity: 1;
   transition: all 0.25s ease-in-out;
 
-  ${({ $type, $cover }) =>
-    $type === "pdf"
-      ? css`
-          background-image: url(${coverPdf});
-          background-color: #fff;
-        `
-      : css`
-          background-image: url(${$cover});
-        `};
+  &.pdf {
+    background-color: #fff;
+  }
+
+  &.actived {
+    opacity: 0.5;
+  }
 
   &:hover {
     opacity: 0.5;
   }
-`;
+}

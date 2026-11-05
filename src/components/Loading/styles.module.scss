@@ -1,0 +1,19 @@
+@keyframes loading {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.container {
+  position: absolute;
+  margin: auto;
+  width: 48px;
+  height: 48px;
+
+  svg {
+    animation: loading 1s linear infinite;
+  }
+}

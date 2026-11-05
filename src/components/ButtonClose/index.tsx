@@ -1,12 +1,12 @@
 import { XCircle } from "phosphor-react";
 
-import { Container } from "./styles";
+import styles from "./styles.module.scss";
 import { ButtonCloseProps } from "./types";
 
 export function ButtonClose({ handleClose }: ButtonCloseProps) {
   return (
-    <Container onClick={handleClose}>
+    <div className={styles.container} onClick={handleClose}>
       <XCircle size={32} color="#FFFFFF" />
-    </Container>
+    </div>
   );
 }

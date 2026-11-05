@@ -1,10 +1,10 @@
 import { CircleNotch } from "phosphor-react";
-import { Container } from "./styles";
+import styles from "./styles.module.scss";
 
 export function Loading() {
   return (
-    <Container>
+    <div className={styles.container}>
       <CircleNotch size={48} color="#FFFFFF" />
-    </Container>
+    </div>
   );
 }

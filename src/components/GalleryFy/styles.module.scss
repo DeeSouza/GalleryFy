@@ -1,11 +1,4 @@
-import styled from "styled-components";
-
-interface Props {
-  $loaded: boolean;
-  $fullWidth?: boolean;
-}
-
-export const WrapperContainer = styled.div`
+.wrapperContainer {
   height: 100vh;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
@@ -20,9 +13,9 @@ export const WrapperContainer = styled.div`
   left: 0;
   top: 0;
   z-index: 9999;
-`;
+}
 
-export const Container = styled.div`
+.container {
   width: 100%;
   height: calc(100% - (50px + 80px));
   position: relative;
@@ -30,16 +23,24 @@ export const Container = styled.div`
   flex: 1;
   align-items: center;
   justify-content: center;
-`;
+}
 
-export const IframeContainer = styled.iframe<Props>`
-  display: ${({ $loaded }) => ($loaded ? "block" : "none")};
-  width: ${({ $fullWidth }) => ($fullWidth ? "100%" : "70%")};
+.iframeContainer {
+  display: none;
+  width: 70%;
   height: 100%;
   border: none;
-`;
 
-export const TitleFile = styled.span`
+  &.loaded {
+    display: block;
+  }
+
+  &.fullWidth {
+    width: 100%;
+  }
+}
+
+.titleFile {
   position: absolute;
   margin: auto;
   left: 0;
@@ -51,11 +52,15 @@ export const TitleFile = styled.span`
   padding: 6px 15px;
   display: inline-table;
   font-weight: bold;
-`;
+}
 
-export const ImageContainer = styled.img<Props>`
-  display: ${({ $loaded }) => ($loaded ? "block" : "none")};
+.imageContainer {
+  display: none;
   vertical-align: middle;
   transform: scale(1);
   user-select: none;
-`;
+
+  &.loaded {
+    display: block;
+  }
+}

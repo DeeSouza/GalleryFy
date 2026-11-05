@@ -1,14 +1,14 @@
 import { ArrowRight } from "phosphor-react";
 
-import { NavRight } from "./styles";
+import styles from "./styles.module.scss";
 import { NavigationArrowProps } from "./types";
 
 export const NavigationRight: React.FunctionComponent<NavigationArrowProps> = ({
   handle,
 }: NavigationArrowProps) => {
   return (
-    <NavRight onClick={() => handle("next")}>
+    <div className={styles.navRight} onClick={() => handle("next")}>
       <ArrowRight size={20} color="#FFF" />
-    </NavRight>
+    </div>
   );
 };

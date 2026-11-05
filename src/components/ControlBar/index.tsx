@@ -10,7 +10,7 @@ import {
 
 import { Direction, ZoomKind } from "@hooks/useControl/types";
 
-import { Container, Buttons } from "./styles";
+import styles from "./styles.module.scss";
 import { ControlBarProps } from "./types";
 
 export const ControlBar: React.FunctionComponent<ControlBarProps> = ({
@@ -23,13 +23,20 @@ export const ControlBar: React.FunctionComponent<ControlBarProps> = ({
   positionPlacement,
   isDownload,
 }: ControlBarProps) => {
+  const containerClassName = [
+    styles.container,
+    positionPlacement === "bottom" ? styles.bottom : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <Container $positionPlacement={positionPlacement}>
+    <div className={containerClassName}>
       <div>
         {current + 1} de {amount}
       </div>
 
-      <Buttons>
+      <div className={styles.buttons}>
         {isDownload && (
           <button
             type="button"
@@ -83,7 +90,7 @@ export const ControlBar: React.FunctionComponent<ControlBarProps> = ({
         <button type="button" title="Fechar" onClick={handleClose}>
           <XCircle size={20} color="#FFFFFF" />
         </button>
-      </Buttons>
-    </Container>
+      </div>
+    </div>
   );
 };

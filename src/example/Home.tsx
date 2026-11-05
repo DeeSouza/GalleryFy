@@ -5,7 +5,7 @@ import image1 from "@assets/image-example-1.png";
 import image2 from "@assets/image-example-2.png";
 import image3 from "@assets/image-example-3.png";
 
-import { Container } from "./styles";
+import styles from "./styles.module.scss";
 
 export default function Home() {
   const [openInImage, setOpenInImage] = useState(0);
@@ -42,7 +42,7 @@ export default function Home() {
         isDownload={true}
       />
 
-      <Container>
+      <div className={styles.container}>
         {dataSource.map((item, index) => (
           <div key={item.src} onClick={() => handleOpen(index)}>
             <span>{item.title}</span>
@@ -50,7 +50,7 @@ export default function Home() {
         ))}
 
         <button onClick={() => setOpen(true)}>Open Gallery</button>
-      </Container>
+      </div>
     </div>
   );
 }

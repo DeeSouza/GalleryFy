@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect, useRef } from "react";
 
+import coverPdf from "@assets/pdf.png";
+
 import { ThumbsProps } from "./types";
-import { Container, ThumbImage } from "./styles";
+import styles from "./styles.module.scss";
 
 export const Thumbs: React.FunctionComponent<ThumbsProps> = ({
   dataSource,
@@ -51,17 +53,30 @@ export const Thumbs: React.FunctionComponent<ThumbsProps> = ({
   }, [onMouseMove, onMouseDown, onMouseUp]);
 
   return (
-    <Container ref={thumbsRef}>
+    <div className={styles.container} ref={thumbsRef}>
       {React.Children.toArray(
-        dataSource.map((file, index: number) => (
-          <ThumbImage
-            onClick={() => handleChange(index)}
-            $cover={file.src}
-            $type={file.type}
-            $actived={index === currentImage}
-          />
-        ))
+        dataSource.map((file, index: number) => {
+          const isPdf = file.type === "pdf";
+
+          const className = [
+            styles.thumbImage,
+            isPdf ? styles.pdf : "",
+            index === currentImage ? styles.actived : "",
+          ]
+            .filter(Boolean)
+            .join(" ");
+
+          return (
+            <div
+              className={className}
+              onClick={() => handleChange(index)}
+              style={{
+                backgroundImage: `url(${isPdf ? coverPdf : file.src})`,
+              }}
+            />
+          );
+        }),
       )}
-    </Container>
+    </div>
   );
 };

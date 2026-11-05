@@ -2,6 +2,7 @@ import { fileURLToPath, URL } from "url";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
+import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 
 export default defineConfig({
   resolve: {
@@ -47,7 +48,18 @@ export default defineConfig({
       ],
       rollupTypes: true,
     }),
+    cssInjectedByJsPlugin(),
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: "modern-compiler",
+      },
+    },
+    modules: {
+      generateScopedName: "galleryfy-[local]-[hash:base64:5]",
+    },
+  },
   test: {
     globals: true,
     environment: "jsdom",
@@ -59,18 +71,12 @@ export default defineConfig({
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
-      external: [
-        "react",
-        "react-dom",
-        "react/jsx-runtime",
-        "styled-components",
-      ],
+      external: ["react", "react-dom", "react/jsx-runtime"],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDOM",
           "react/jsx-runtime": "jsxRuntime",
-          "styled-components": "styled",
         },
       },
     },

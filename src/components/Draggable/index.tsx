@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef } from "react";
 import { isMouse, isTouch } from "@utils/events";
 
 import { DraggableProps } from "./types";
-import { Container } from "./styles";
+import styles from "./styles.module.scss";
 
 export const Draggable: React.FunctionComponent<DraggableProps> = ({
   children,
@@ -34,7 +34,7 @@ export const Draggable: React.FunctionComponent<DraggableProps> = ({
         dragRef.current.style.top = `${dragY}px`;
       }
     },
-    [isMouseDown, offset]
+    [isMouseDown, offset],
   );
 
   const onMouseUp = useCallback(() => {
@@ -72,7 +72,7 @@ export const Draggable: React.FunctionComponent<DraggableProps> = ({
       document.addEventListener("mousemove", onMouseMove, true);
       document.addEventListener("touchmove", onMouseMove, true);
     },
-    [onMouseUp, onMouseMove]
+    [onMouseUp, onMouseMove],
   );
 
   useEffect(() => {
@@ -89,5 +89,9 @@ export const Draggable: React.FunctionComponent<DraggableProps> = ({
     };
   }, [onMouseDown, onMouseUp, onMouseMove]);
 
-  return <Container ref={dragRef}>{children}</Container>;
+  return (
+    <div className={styles.container} ref={dragRef}>
+      {children}
+    </div>
+  );
 };

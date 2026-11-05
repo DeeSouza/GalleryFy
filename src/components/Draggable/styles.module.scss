@@ -1,6 +1,4 @@
-import { styled } from "styled-components";
-
-export const Container = styled.div`
+.container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,4 +18,4 @@ export const Container = styled.div`
       max-height: 100%;
     }
   }
-`;
+}

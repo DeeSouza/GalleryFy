@@ -1,0 +1,35 @@
+@mixin nav-styles {
+  position: absolute;
+  background-color: #666;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  opacity: 0.6;
+  transition: all 0.25s ease-in;
+  transform: translateY(-50%) scale(1);
+
+  &:hover {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.15);
+  }
+}
+
+.containerNavigation {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+
+  svg {
+    vertical-align: middle;
+  }
+}
+
+.navLeft {
+  @include nav-styles;
+  left: 10px;
+}
+
+.navRight {
+  @include nav-styles;
+  right: 10px;
+}

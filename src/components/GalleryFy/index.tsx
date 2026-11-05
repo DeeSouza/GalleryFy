@@ -16,13 +16,7 @@ import { ButtonClose } from "@components/ButtonClose";
 import { useGallery } from "@hooks/useGallery";
 import { useControl } from "@hooks/useControl";
 
-import {
-  WrapperContainer,
-  Container,
-  ImageContainer,
-  IframeContainer,
-  TitleFile,
-} from "./styles";
+import styles from "./styles.module.scss";
 import { GalleryFyProps, KeyHandlers } from "./types";
 
 /**
@@ -177,7 +171,7 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
   const isPositionTop = positionPlacement === "top";
 
   return (
-    <WrapperContainer>
+    <div className={styles.wrapperContainer}>
       <ControlBar
         amount={amountData}
         current={current}
@@ -191,37 +185,50 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
 
       {!isPositionTop && <ButtonClose handleClose={handleCloseGallery} />}
 
-      <Container ref={wrapperContainer} onClick={handleCloseOverlay}>
+      <div
+        className={styles.container}
+        ref={wrapperContainer}
+        onClick={handleCloseOverlay}
+      >
         {!loaded && <Loading />}
 
         {isFilePdf ? (
-          <IframeContainer
+          <iframe
+            className={[
+              styles.iframeContainer,
+              loaded ? styles.loaded : "",
+              fullWidth ? styles.fullWidth : "",
+            ]
+              .filter(Boolean)
+              .join(" ")}
             src={fileSrc}
             ref={iframeRef}
             title={fileTitle}
             onLoad={() => setLoaded(true)}
             allowTransparency
             allowFullScreen
-            $loaded={loaded}
-            $fullWidth={fullWidth}
           />
         ) : (
           <Draggable>
             <div ref={wrapperImage}>
-              <ImageContainer
+              <img
+                className={[styles.imageContainer, loaded ? styles.loaded : ""]
+                  .filter(Boolean)
+                  .join(" ")}
                 src={fileSrc}
                 ref={imageRef}
                 draggable="false"
                 onLoad={() => setLoaded(true)}
                 title={fileTitle}
-                $loaded={loaded}
               />
             </div>
           </Draggable>
         )}
 
-        {showTitle && fileTitle && <TitleFile>{fileTitle}</TitleFile>}
-      </Container>
+        {showTitle && fileTitle && (
+          <span className={styles.titleFile}>{fileTitle}</span>
+        )}
+      </div>
 
       <Navigation.Root>
         {!isFirstIndex && (
@@ -240,7 +247,7 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
           currentImage={current}
         />
       )}
-    </WrapperContainer>
+    </div>
   );
 };
 
