@@ -16,6 +16,11 @@ export default function Home() {
     setOpen(true);
   }
 
+  function handleClose() {
+    setOpen(false);
+    setOpenInImage(0);
+  }
+
   const dataSource = [
     { src: image1, title: "Imagem 1" },
     { src: image2, title: "Imagem 2" },
@@ -32,7 +37,7 @@ export default function Home() {
         open={open}
         dataSource={dataSource}
         startIn={openInImage}
-        handleClose={() => setOpen(false)}
+        handleClose={handleClose}
         positionPlacement="bottom"
         isDownload={true}
       />
@@ -43,6 +48,8 @@ export default function Home() {
             <span>{item.title}</span>
           </div>
         ))}
+
+        <button onClick={() => setOpen(true)}>Open Gallery</button>
       </Container>
     </div>
   );

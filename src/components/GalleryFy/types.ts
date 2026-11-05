@@ -19,6 +19,7 @@ export interface GalleryFyProps {
   showTitle?: boolean;
   fullWidth?: boolean;
   isDownload?: boolean;
+  closeOnOverlay?: boolean;
   handleClose(): void;
 }
 

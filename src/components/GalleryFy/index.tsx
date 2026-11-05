@@ -36,6 +36,7 @@ import { GalleryFyProps, KeyHandlers } from "./types";
  * @param {boolean} showTitle - shown title from file
  * @param {boolean} fullWidth - full width iframe
  * @param {boolean} isDownload - enable download option for files
+ * @param {boolean} closeOnOverlay - close the gallery when clicking on the overlay (default: false)
  * @returns {JSX.Element} The rendered gallery component.
  * 
  * @example
@@ -58,6 +59,7 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
   showTitle = true,
   fullWidth = false,
   isDownload = false,
+  closeOnOverlay = false,
   handleClose = () => {},
 }: GalleryFyProps) => {
   const [loaded, setLoaded] = useState<boolean>(false);
@@ -78,6 +80,7 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
   } = useGallery({
     dataSource,
     startIn,
+    open,
   });
 
   const { handleRotate, handleZoom, handleReset } = useControl(
@@ -91,18 +94,17 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
   }, [handleClose, handleReset]);
 
   function handleCloseOverlay(event: MouseEvent<HTMLDivElement>) {
-    const targetElement = event.target as HTMLElement;
-
-    if (!imageRef.current && !iframeRef.current) {
+    if (!closeOnOverlay) {
       return;
     }
 
-    const doesntClickElement =
-      targetElement !== imageRef.current || targetElement !== iframeRef.current;
+    const targetElement = event.target as HTMLElement;
 
-    if (doesntClickElement) {
-      handleClose();
-      handleReset();
+    const clickedOnContent =
+      targetElement === imageRef.current || targetElement === iframeRef.current;
+
+    if (!clickedOnContent) {
+      handleCloseGallery();
     }
   }
 

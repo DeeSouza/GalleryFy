@@ -18,6 +18,7 @@ export enum ActionKind {
 export interface Props {
   dataSource: DataSource[];
   startIn?: number;
+  open?: boolean;
 }
 
 export interface InitialStateProps {

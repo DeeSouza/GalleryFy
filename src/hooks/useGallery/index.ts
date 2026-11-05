@@ -22,7 +22,11 @@ function reducer(state: InitialStateProps, action: ActionProps) {
   return state;
 }
 
-export const useGallery = ({ dataSource, startIn }: Props): UseGalleryProps => {
+export const useGallery = ({
+  dataSource,
+  startIn,
+  open,
+}: Props): UseGalleryProps => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const formattedDataSource = formatDataSource(dataSource);
 
@@ -68,12 +72,13 @@ export const useGallery = ({ dataSource, startIn }: Props): UseGalleryProps => {
   }, [state.startIn, dataSource.length]);
 
   useEffect(() => {
-    if (startIn === undefined) {
-      return handleChange(0);
+    if (!open) {
+      handleChange(0);
+      return;
     }
 
-    handleChange(startIn);
-  }, [startIn, handleChange]);
+    handleChange(startIn ?? 0);
+  }, [open, startIn, handleChange]);
 
   return {
     isFirstIndex,
