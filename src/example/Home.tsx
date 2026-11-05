@@ -34,6 +34,7 @@ export default function Home() {
         startIn={openInImage}
         handleClose={() => setOpen(false)}
         positionPlacement="bottom"
+        isDownload={true}
       />
 
       <Container>

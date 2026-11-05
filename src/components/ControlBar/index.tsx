@@ -5,6 +5,7 @@ import {
   ArrowCounterClockwise,
   ArrowClockwise,
   ArrowsIn,
+  ArrowDown,
 } from "phosphor-react";
 
 import { Direction, ZoomKind } from "@hooks/useControl/types";
@@ -18,7 +19,9 @@ export const ControlBar: React.FunctionComponent<ControlBarProps> = ({
   handleClose,
   handleRotate,
   handleZoom,
+  handleDownload,
   positionPlacement,
+  isDownload,
 }: ControlBarProps) => {
   return (
     <Container $positionPlacement={positionPlacement}>
@@ -27,6 +30,16 @@ export const ControlBar: React.FunctionComponent<ControlBarProps> = ({
       </div>
 
       <Buttons>
+        {isDownload && (
+          <button
+            type="button"
+            title="Download"
+            onClick={() => handleDownload()}
+          >
+            <ArrowDown size={20} color="#FFFFFF" />
+          </button>
+        )}
+
         <button
           type="button"
           title="Rotacionar anti-horário"

@@ -35,6 +35,7 @@ import { GalleryFyProps, KeyHandlers } from "./types";
  * @param {string} positionPlacement - position of the control buttons
  * @param {boolean} showTitle - shown title from file
  * @param {boolean} fullWidth - full width iframe
+ * @param {boolean} isDownload - enable download option for files
  * @returns {JSX.Element} The rendered gallery component.
  * 
  * @example
@@ -53,10 +54,11 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
   startIn,
   open = false,
   showThumbs = true,
-  handleClose = () => {},
   positionPlacement = "top",
   showTitle = true,
   fullWidth = false,
+  isDownload = false,
+  handleClose = () => {},
 }: GalleryFyProps) => {
   const [loaded, setLoaded] = useState<boolean>(false);
   const wrapperImage = useRef<HTMLDivElement | null>(null);
@@ -80,7 +82,7 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
 
   const { handleRotate, handleZoom, handleReset } = useControl(
     wrapperImage,
-    wrapperContainer
+    wrapperContainer,
   );
 
   const handleCloseGallery = useCallback(() => {
@@ -111,6 +113,17 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
     handleChange(index);
   }
 
+  function handleDownload() {
+    const link = document.createElement("a");
+    link.href = fileSrc;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.download = fileTitle || "download";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
   const handleMiddlewareNavigation = useCallback(
     (side: "prev" | "next") => {
       setLoaded(true);
@@ -122,7 +135,7 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
         handleChangeNext();
       }
     },
-    [handleReset, handleChangePrev, handleChangeNext]
+    [handleReset, handleChangePrev, handleChangeNext],
   );
 
   useEffect(() => {
@@ -152,7 +165,7 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
   }, [handleMiddlewareNavigation, handleCloseGallery]);
 
   if (!dataSource.length || !open) {
-    return;
+    return null;
   }
 
   const fileCurrent = dataGallery[current];
@@ -168,8 +181,10 @@ const GalleryFy: React.FunctionComponent<GalleryFyProps> = ({
         current={current}
         handleClose={handleCloseGallery}
         handleZoom={handleZoom}
+        handleDownload={handleDownload}
         handleRotate={(direction) => handleRotate(direction)}
         positionPlacement={positionPlacement}
+        isDownload={isDownload}
       />
 
       {!isPositionTop && <ButtonClose handleClose={handleCloseGallery} />}

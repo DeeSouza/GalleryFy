@@ -15,10 +15,11 @@ export interface GalleryFyProps {
   open?: boolean;
   startIn?: number;
   showThumbs?: boolean;
-  handleClose(): void;
   positionPlacement?: "top" | "bottom";
   showTitle?: boolean;
   fullWidth?: boolean;
+  isDownload?: boolean;
+  handleClose(): void;
 }
 
 export interface KeyHandlers {
