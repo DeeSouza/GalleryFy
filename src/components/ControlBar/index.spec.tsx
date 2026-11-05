@@ -13,6 +13,7 @@ describe("<ControlBar />", () => {
     handleClose: vi.fn(),
     handleRotate: vi.fn(),
     handleZoom: vi.fn(),
+    handleDownload: vi.fn(),
   };
 
   it("should render component", () => {
