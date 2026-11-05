@@ -13,7 +13,7 @@ export default defineConfig({
       {
         find: "@components",
         replacement: fileURLToPath(
-          new URL("./src/components", import.meta.url)
+          new URL("./src/components", import.meta.url),
         ),
       },
       {
@@ -34,7 +34,20 @@ export default defineConfig({
       },
     ],
   },
-  plugins: [react(), dts()],
+  plugins: [
+    react(),
+    dts({
+      include: ["src"],
+      exclude: [
+        "src/main.tsx",
+        "src/App.tsx",
+        "src/example/**",
+        "src/**/*.stories.tsx",
+        "src/**/*.spec.tsx",
+      ],
+      rollupTypes: true,
+    }),
+  ],
   test: {
     globals: true,
     environment: "jsdom",
@@ -46,10 +59,18 @@ export default defineConfig({
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
-      external: ["react", "react-dom"],
+      external: [
+        "react",
+        "react-dom",
+        "react/jsx-runtime",
+        "styled-components",
+      ],
       output: {
         globals: {
           react: "React",
+          "react-dom": "ReactDOM",
+          "react/jsx-runtime": "jsxRuntime",
+          "styled-components": "styled",
         },
       },
     },
